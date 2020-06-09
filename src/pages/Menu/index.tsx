@@ -30,7 +30,7 @@ const Menu = () => {
       <ImageBackground 
         style={styles.container}
         source={require('../../assets/background-2.png')}
-        imageStyle={{ width: 600, height: 880 }}
+        imageStyle={{ width: 580, height: 880 }}
       >
         <View style={styles.main}>
           <View>
