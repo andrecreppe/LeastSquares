@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import { StyleSheet, View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
+
+import styles from './style';
 
 const Menu = () => {
   const navigation = useNavigation();
@@ -78,104 +80,5 @@ const Menu = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 32,
-  },
-
-  main: {
-    flex: 1,
-  },
-
-  title: {
-    color: '#322153',
-    fontSize: 32,
-    fontFamily: 'Ubuntu_500Medium',
-    maxWidth: 400,
-    marginTop: 64,
-    alignSelf: "center"
-  },
-
-  logo: {
-    alignSelf: 'center',
-    marginTop: 64,
-    marginBottom: 128
-  },
-
-  description: {
-    color: '#6C6C80',
-    fontSize: 16,
-    marginTop: 16,
-    fontFamily: 'Ubuntu_400Regular',
-    maxWidth: 260,
-    lineHeight: 24,
-  },
-
-  footer: {
-    flexDirection: 'row'
-  },
-
-  input: {
-    height: 60,
-    backgroundColor: '#F0F0F5',
-    borderRadius: 10,
-    marginBottom: 8,
-    paddingHorizontal: 24,
-    fontSize: 16,
-  },
-
-  buttonCalculate: {
-    backgroundColor: '#34CB79',
-    height: 60,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-
-  buttonAbout: {
-    backgroundColor: '#645676',
-    height: 60,
-    width: 170,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-    marginRight: 15
-  },
-
-  buttonConfigs: {
-    backgroundColor: '#15B6B6',
-    height: 60,
-    width: 170,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-    marginRight: 15
-  },
-
-  buttonIcon: {
-    height: 60,
-    width: 60,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  buttonText: {
-    flex: 1,
-    justifyContent: 'center',
-    textAlign: 'center',
-    color: '#FFF',
-    fontFamily: 'Ubuntu_400Regular',
-    fontSize: 16,
-  }
-});
 
 export default Menu;

@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Menu from './pages/Menu';
+import About from './pages/About';
 
 const AppStack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const Routes = () => {
         }}
       >
         <AppStack.Screen name="Home" component={Menu}/>
+        <AppStack.Screen name="About" component={About}/>
       </AppStack.Navigator>
     </NavigationContainer>
   );
