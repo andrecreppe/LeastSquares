@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontFamily: 'Ubuntu_500Medium',
     maxWidth: 400,
-    marginTop: 64,
+    marginTop: 36,
     alignSelf: "center"
   },
 
   logo: {
     alignSelf: 'center',
-    marginTop: 64,
-    marginBottom: 128
+    marginTop: 72,
+    marginBottom: 128,
   },
 
   description: {

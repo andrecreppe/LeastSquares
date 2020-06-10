@@ -31,9 +31,9 @@ const About = () => {
       source={require('../../assets/background-2.png')}
       imageStyle={{ width: 580, height: 880 }}
     >
-      <View style={styles.return}>
+      <View>
         <TouchableOpacity onPress={handleNavitateToMenu}>
-            <Icon name='arrow-left' size={25} color='#000000' />
+            <Icon name='arrow-left' size={28} color='#000000' />
         </TouchableOpacity>
       </View>
 

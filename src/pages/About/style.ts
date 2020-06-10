@@ -10,15 +10,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  return: {
-    marginTop: 20
-  },
-
   box: {
     backgroundColor: '#C3C3C3',
     marginTop: 24,
     padding: 10,
-    //marginLeft: 3,
     borderRadius: 10
   },
 
@@ -62,8 +57,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu_400Regular',
     fontSize: 20,
     textAlign: 'center',
+    color: '#FFF',
 
-    backgroundColor: '#34CB82',
+    backgroundColor: '#54A4A9',
     height: 30,
     width: 200,
     borderRadius: 10,
