@@ -10,35 +10,62 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: {
-    color: '#322153',
-    fontSize: 32,
-    fontFamily: 'Ubuntu_500Medium',
-    maxWidth: 400,
-    marginTop: 36,
-    alignSelf: "center"
-  },
+  box: {
+    backgroundColor: '#F3F3F3',
+    marginTop: 12,
+    padding: 10,
+    borderRadius: 10,
 
-  logo: {
-    alignSelf: 'center',
-    marginTop: 72,
-    marginBottom: 128,
-  },
-
-  description: {
-    color: '#6C6C80',
-    fontSize: 16,
-    marginTop: 16,
-    fontFamily: 'Ubuntu_400Regular',
-    maxWidth: 260,
-    lineHeight: 24,
-  },
-
-  footer: {
     flexDirection: 'row'
   },
 
-  buttonGo: {
+  bigBox: {
+    height: 350
+  },
+
+  dataInput: {
+    textAlign: 'center',
+    height: 40,
+    maxWidth: 125,
+    borderRadius: 10,
+    borderWidth: .5,
+    borderColor: '#009688',
+    fontSize: 18
+  },
+
+  dataInputFormat: {
+    flexDirection: 'row'
+  },
+
+  dataInputText:{
+    fontFamily: 'Ubuntu_400Regular',
+    fontSize: 28,
+  },
+
+  savePoint: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+
+  title: {
+    color: '#322153',
+    fontSize: 26,
+    fontFamily: 'Ubuntu_500Medium',
+    maxWidth: 400,
+    marginTop: 12
+  },
+
+  subtitle: {
+    fontFamily: 'Ubuntu_400Regular',
+    fontSize: 18,
+  },
+
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+
+  buttonCalculate: {
     backgroundColor: '#34CB79',
     height: 60,
     flexDirection: 'row',
@@ -46,25 +73,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     marginTop: 8,
-  },
-
-  buttomBottom: {
-    height: 60,
-    width: 170,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-    marginRight: 15
-  },
-
-  buttonAbout: {
-    backgroundColor: '#34CBCB',
-  },
-
-  buttonConfigs: {
-    backgroundColor: '#C8CB34',
   },
 
   buttonIcon: {
@@ -82,7 +90,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'Ubuntu_400Regular',
     fontSize: 16,
-    marginLeft: -10
+    marginLeft: -30
   }
 });
 

@@ -10,8 +10,8 @@ import styles from './style';
 const Menu = () => {
   const navigation = useNavigation();
 
-  function handleNavitateToData() {
-    navigation.navigate('Data');
+  function handleNavitateToPoints() {
+    navigation.navigate('Points');
   }
 
   function handleNavitateToAbout() {
@@ -41,31 +41,29 @@ const Menu = () => {
             <Image style={styles.logo} source={require('../../assets/graphic.png')} />
           </View>
 
-          <RectButton style={styles.buttonCalculate} onPress={handleNavitateToData}>
+          <RectButton style={styles.buttonGo} onPress={handleNavitateToPoints}>
             <View style={styles.buttonIcon}>
               <Text>
                 <Icon name='arrow-right' color="#FFF" size={24} />
               </Text>
             </View>
             <Text style={styles.buttonText}>
-              Calcular
+              Começar
             </Text>
           </RectButton>
         </View>
 
         <View style={styles.footer}>
-          <RectButton style={styles.buttonAbout} onPress={handleNavitateToAbout}>
+          <RectButton style={[styles.buttonAbout, styles.buttomBottom]} onPress={handleNavitateToAbout}>
             <View style={styles.buttonIcon}>
-              <Text>
-                <Icon name='info' color="#FFF" size={22} />
-              </Text>
+              <Icon name='info' color="#FFF" size={22} />
             </View>
             <Text style={styles.buttonText}>
               Sobre
             </Text>
           </RectButton>
 
-          <RectButton style={styles.buttonConfigs} onPress={handleNavitateToSettings}>
+          <RectButton style={[styles.buttonConfigs, styles.buttomBottom]} onPress={handleNavitateToSettings}>
             <View style={styles.buttonIcon}>
               <Text>
                 <Icon name='settings' color="#FFF" size={22} />
