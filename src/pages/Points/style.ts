@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
   },
 
   savePoint: {
-    alignSelf: 'center',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    flex: 1
   },
 
   title: {

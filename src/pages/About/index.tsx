@@ -75,7 +75,7 @@ const About = () => {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.version}>v1.0 - June/2020</Text>
+        <Text style={styles.version}>v1.0 - Junho/2020</Text>
       </View>
     </ImageBackground>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RectButton } from 'react-native-gesture-handler';
@@ -8,6 +8,10 @@ import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 import styles from './style';
 
 const Points = () => {
+  const [typedX, setTypedX] = useState<string>('');
+  const [typedY, setTypedY] = useState<string>('');
+  const [points, setPoints] = useState<[number, number]>([0,0]);
+
   const navigation = useNavigation();
 
   function handleNavitateToMenu() {
@@ -20,8 +24,25 @@ const Points = () => {
 
   //------------------------------------
 
-  function handleSavePoint() {
+  function formatInput(coordinate: string) {
+    //Removes -
+    let cleanCoordinate = coordinate.replace('-', '');
+    
+    //Remover double point
+    while(cleanCoordinate.split('.').length > 2) {
+      cleanCoordinate = cleanCoordinate.replace(/.([^.]*)$/, '$1')
+    }
 
+    return cleanCoordinate;
+  }
+
+  function handleSavePoint() {
+    const newX = Number(formatInput(typedX));
+    const newY = Number(formatInput(typedY));
+
+    setPoints([newX, newY]);
+
+    //show the points in list
   }
 
   return (
@@ -47,10 +68,11 @@ const Points = () => {
               <Text style={styles.dataInputText}>(</Text>
 
               <TextInput  
-                placeholder="X"  
+                placeholder="X"
                 underlineColorAndroid='transparent'  
-                style={styles.dataInput}  
+                style={styles.dataInput}
                 keyboardType={'numeric'}
+                onChangeText={text => setTypedX(text)}
               />
 
               <Text style={styles.dataInputText}>,</Text>
@@ -60,14 +82,17 @@ const Points = () => {
                 underlineColorAndroid='transparent'  
                 style={styles.dataInput}  
                 keyboardType={'numeric'}
+                onChangeText={text => setTypedY(text)}
               />
 
               <Text style={styles.dataInputText}>)</Text>
             </View>
 
-            <RectButton style={styles.savePoint} onPress={handleSavePoint} >
-              <Icon name='save' color="#27ba3d" size={32} />
-            </RectButton>
+            <View style={styles.savePoint}>
+              <RectButton onPress={handleSavePoint} >
+                <Icon name='save' color="#27ba3d" size={32} />
+              </RectButton>
+            </View>
           </View>
         </View>
 
