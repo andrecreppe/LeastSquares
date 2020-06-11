@@ -10,6 +10,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  title: {
+    color: '#322153',
+    fontSize: 26,
+    fontFamily: 'Ubuntu_500Medium',
+    maxWidth: 400,
+    marginTop: 12
+  },
+
+  subtitle: {
+    fontFamily: 'Ubuntu_400Regular',
+    fontSize: 18,
+  },
+
   box: {
     backgroundColor: '#F3F3F3',
     marginTop: 12,
@@ -19,8 +32,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 
+  boxClear: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    flexDirection: 'row'
+  },
+
   bigBox: {
     height: 350
+  },
+
+  reset: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    flex: 1
   },
 
   dataInput: {
@@ -48,17 +73,25 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-  title: {
-    color: '#322153',
-    fontSize: 26,
-    fontFamily: 'Ubuntu_500Medium',
-    maxWidth: 400,
-    marginTop: 12
+  scroll: {
+    width: 325,
   },
 
-  subtitle: {
-    fontFamily: 'Ubuntu_400Regular',
-    fontSize: 18,
+  points: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    marginBottom: 10
+  },
+
+  point: {
+    flexDirection: 'row',
+    width: 250,
+    fontSize: 18
+  },
+
+  pointOptions: {
+    alignItems: 'flex-end',
+    marginLeft: 10,
   },
 
   footer: {

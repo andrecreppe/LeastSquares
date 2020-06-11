@@ -1,16 +1,22 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RectButton } from 'react-native-gesture-handler';
-import { View, ImageBackground, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
 import styles from './style';
 
+interface Point {
+  index: number,
+  x: number,
+  y: number
+}
+
 const Points = () => {
   const [typedX, setTypedX] = useState<string>('');
   const [typedY, setTypedY] = useState<string>('');
-  const [points, setPoints] = useState<[number, number]>([0,0]);
+  const [points, setPoints] = useState<Point[]>([]);
 
   const navigation = useNavigation();
 
@@ -20,6 +26,8 @@ const Points = () => {
 
   function handleNavigateToGraph() {
     //navigation.navigate('Graph');
+
+    //mínimo de 3 pontos!
   }
 
   //------------------------------------
@@ -37,12 +45,13 @@ const Points = () => {
   }
 
   function handleSavePoint() {
-    const newX = Number(formatInput(typedX));
-    const newY = Number(formatInput(typedY));
+    const x = Number(formatInput(typedX));
+    const y = Number(formatInput(typedY));
+    const index = points.length;
 
-    setPoints([newX, newY]);
+    setPoints([...points, {index, x, y}])
 
-    //show the points in list
+    //window.location.reload(false);
   }
 
   return (
@@ -60,7 +69,7 @@ const Points = () => {
       <View style={styles.main}>
         <View>
           <Text style={styles.title}>
-            Insira um ponto (x,y)
+            Insira um ponto
           </Text>
 
           <View style={styles.box}>
@@ -97,14 +106,37 @@ const Points = () => {
         </View>
 
         <View>
-          <Text style={styles.title}>
-            Pontos registrados
-          </Text>
+          <View style={styles.boxClear}>
+            <Text style={styles.title}>
+              Pontos registrados
+            </Text>
+
+            <RectButton style={styles.reset}>
+                <Icon name='trash-2' color="#000" size={28} /> 
+            </RectButton>
+          </View>
 
           <View style={styles.box}>
             <View style={styles.bigBox}>
-              <Text>CONTROL HERE</Text>
-              <Text>SCROLL AREA HERE</Text>
+             <ScrollView style={styles.scroll}>
+              {(points.length > 0) ? points.map(point => (
+                <View style={styles.points}>
+                  <Text key={point.index} style={styles.point}>
+                    {point.index+1}. ({point.x}, {point.y})
+                  </Text>
+
+                  <RectButton style={styles.pointOptions}>
+                      <Icon name='edit-2' color="#000" size={28} />
+                    </RectButton>
+                    
+                  <RectButton style={styles.pointOptions}>
+                    <Icon name='trash' color="#FF0000" size={28} />
+                  </RectButton>
+                </View>
+              )) : (
+                <Text>Insira pelo menos 3 pontos para começar!</Text>
+              )}
+             </ScrollView>
             </View>
           </View>
         </View>
