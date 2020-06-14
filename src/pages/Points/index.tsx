@@ -29,20 +29,40 @@ const Points = () => {
     navigation.goBack();
   }
 
-  function handleNavigateToGraph() {
-    if(points.length < 3) {
-      Alert.alert(
-        "Calma aí!",
-        "O mínimo necessário para fazer a regressão linear são 3 pontos!",
-        [
-          { text: "Beleza" }
-        ],
-        { cancelable: false }
-      );
+  function sendAlert(message: string) {
+    Alert.alert(
+      "Calma aí!",
+      message,
+      [
+        { text: "Beleza" }
+      ],
+      { cancelable: false }
+    );
+  }
 
+  function handleNavigateToGraph() {
+    let message = "";
+
+    if(points.length < 3) {
+      sendAlert("O mínimo necessário para fazer uma regressão linear são 3 pontos!");
       return
     }
 
+    //All the same points
+    let count = 1;
+    
+    for(let i=1; i<points.length; i++) {
+      if((points[0].x == points[i].x) && points[0].y == points[i].y) {
+        count++;
+      }
+    }
+
+    if(count === points.length) {
+      sendAlert("Não faz sentido calcular a regressão de pontos idênticos!")
+      return
+    }
+
+    //Generate the graph
     navigation.navigate('Graph', points);
   }
 
@@ -185,7 +205,7 @@ const Points = () => {
         <View style={styles.footer}>
           <View style={styles.box}>
             <Text style={styles.subtitle}>
-              *Não se preocupe, se sair da página os dados não serão perdidos!
+              *Não se preocupe, se for calcular e voltar, os dados não serão perdidos!
             </Text>
           </View>
 

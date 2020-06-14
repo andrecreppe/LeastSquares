@@ -44,7 +44,7 @@ const Menu = () => {
           <RectButton style={styles.buttonGo} onPress={handleNavitateToPoints}>
             <View style={styles.buttonIcon}>
               <Text>
-                <Icon name='arrow-right' color="#FFF" size={24} />
+                <Icon name='chevrons-right' color="#FFF" size={24} />
               </Text>
             </View>
             <Text style={styles.buttonText}>

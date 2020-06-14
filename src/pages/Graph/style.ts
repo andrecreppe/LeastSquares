@@ -15,12 +15,23 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'Ubuntu_500Medium',
     maxWidth: 400,
-    marginTop: 12
+    marginTop: 12,
+    textAlign: "center"
+  },
+
+  subtitleTitle: {
+    color: '#FFF',
+    fontSize: 24,
+    fontFamily: 'Ubuntu_500Medium',
+    maxWidth: 400,
+    margin: 5
   },
 
   subtitle: {
+    marginLeft: 5,
     fontFamily: 'Ubuntu_400Regular',
-    fontSize: 18,
+    fontSize: 20,
+    color: '#FFF'
   },
 
   box: {
@@ -29,7 +40,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
 
-    flexDirection: 'row'
+    flexDirection: 'row',
+
+    height: 350
   },
 
   footer: {
@@ -37,7 +50,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 
-  
+  resultsBox: {
+    marginBottom: 30,
+    borderRadius: 10,
+    height: 100,
+  },
+
+  colorCoeficient: {
+    backgroundColor: '#3494CB',
+  },
+
+  colorUncertanty: {
+    backgroundColor: '#CB7334',
+  }
 });
 
 export default styles;
