@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RectButton } from 'react-native-gesture-handler';
@@ -19,6 +19,11 @@ const Points = () => {
   const [points, setPoints] = useState<Point[]>([]);
 
   const navigation = useNavigation();
+
+  const inputXRef = createRef<TextInput>();
+  const inputYRef = createRef<TextInput>();
+
+  //------------------------------------
 
   function handleNavitateToMenu() {
     navigation.goBack();
@@ -49,9 +54,24 @@ const Points = () => {
     const y = Number(formatInput(typedY));
     const index = points.length;
 
-    setPoints([...points, {index, x, y}])
+    setPoints([...points, {index, x, y}]);
 
-    //window.location.reload(false);
+    inputXRef.current?.clear();
+    setTypedX('0');
+    inputYRef.current?.clear();
+    setTypedY('0');
+  }
+
+  function handleClearAllPoints() {
+    setPoints([]);
+  }
+
+  function handleEditPoint() {
+
+  }
+
+  function handleDeletePoint(position: number) {
+    
   }
 
   return (
@@ -82,16 +102,18 @@ const Points = () => {
                 style={styles.dataInput}
                 keyboardType={'numeric'}
                 onChangeText={text => setTypedX(text)}
+                ref={inputXRef}
               />
 
               <Text style={styles.dataInputText}>,</Text>
 
               <TextInput  
-                placeholder="Y"  
+                placeholder="Y"
                 underlineColorAndroid='transparent'  
                 style={styles.dataInput}  
                 keyboardType={'numeric'}
                 onChangeText={text => setTypedY(text)}
+                ref={inputYRef}
               />
 
               <Text style={styles.dataInputText}>)</Text>
@@ -111,7 +133,10 @@ const Points = () => {
               Pontos registrados
             </Text>
 
-            <RectButton style={styles.reset}>
+            <RectButton 
+              style={styles.reset}
+              onPress={handleClearAllPoints}
+            >
                 <Icon name='trash-2' color="#000" size={28} /> 
             </RectButton>
           </View>
@@ -125,11 +150,17 @@ const Points = () => {
                     {point.index+1}. ({point.x}, {point.y})
                   </Text>
 
-                  <RectButton style={styles.pointOptions}>
+                  <RectButton 
+                    style={styles.pointOptions}
+                    onPress={handleEditPoint}  
+                  >
                       <Icon name='edit-2' color="#000" size={28} />
                     </RectButton>
                     
-                  <RectButton style={styles.pointOptions}>
+                  <RectButton 
+                    style={styles.pointOptions}
+                    onPress={() => handleDeletePoint(point.index)}
+                  >
                     <Icon name='trash' color="#FF0000" size={28} />
                   </RectButton>
                 </View>
