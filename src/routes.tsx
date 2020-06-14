@@ -6,6 +6,7 @@ import Menu from './pages/Menu';
 import About from './pages/About';
 import Points from './pages/Points';
 import Graph from './pages/Graph';
+import Settings from './pages/Settings';
 
 const AppStack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const Routes = () => {
         <AppStack.Screen name="About" component={About}/>
         <AppStack.Screen name="Points" component={Points}/>
         <AppStack.Screen name="Graph" component={Graph}/>
+        <AppStack.Screen name="Settings" component={Settings}/>
       </AppStack.Navigator>
     </NavigationContainer>
   );
