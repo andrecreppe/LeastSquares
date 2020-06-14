@@ -85,13 +85,12 @@ const styles = StyleSheet.create({
 
   point: {
     flexDirection: 'row',
-    width: 250,
+    width: 300,
     fontSize: 18
   },
 
   pointOptions: {
     alignItems: 'flex-end',
-    marginLeft: 10,
   },
 
   footer: {

@@ -1,8 +1,8 @@
-import React, { useState, createRef } from 'react';
+import React, { useState, createRef, PureComponent } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RectButton } from 'react-native-gesture-handler';
-import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, PointPropType } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
 import styles from './style';
@@ -22,6 +22,8 @@ const Points = () => {
 
   const inputXRef = createRef<TextInput>();
   const inputYRef = createRef<TextInput>();
+
+  let editIndex = -1;
 
   //------------------------------------
 
@@ -52,6 +54,7 @@ const Points = () => {
   function handleSavePoint() {
     const x = Number(formatInput(typedX));
     const y = Number(formatInput(typedY));
+
     const index = points.length;
 
     setPoints([...points, {index, x, y}]);
@@ -66,12 +69,17 @@ const Points = () => {
     setPoints([]);
   }
 
-  function handleEditPoint() {
+  function handleDeletePoint(position: number) {    
+    const newPoints = points.filter((point) => {
+      if(point.index > position) {
+        point.index--
+        return point
+      } else if(point.index < position) {
+        return point
+      }
+    });
 
-  }
-
-  function handleDeletePoint(position: number) {
-    
+    setPoints(newPoints);
   }
 
   return (
@@ -149,13 +157,6 @@ const Points = () => {
                   <Text key={point.index} style={styles.point}>
                     {point.index+1}. ({point.x}, {point.y})
                   </Text>
-
-                  <RectButton 
-                    style={styles.pointOptions}
-                    onPress={handleEditPoint}  
-                  >
-                      <Icon name='edit-2' color="#000" size={28} />
-                    </RectButton>
                     
                   <RectButton 
                     style={styles.pointOptions}
