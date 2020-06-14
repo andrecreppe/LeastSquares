@@ -43,7 +43,7 @@ const About = () => {
             O que é são os Mínimos Quadrados?
           </Text>
           <Text style={styles.subtitle}>
-            O Método dos Mínimos Quadrados é uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a discrepância entre eles.
+            O método dos Mínimos Quadrados é uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a discrepância entre eles.
           </Text>
         </View>
 

@@ -1,8 +1,8 @@
-import React, { useState, createRef, PureComponent } from 'react';
+import React, { useState, createRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { RectButton } from 'react-native-gesture-handler';
-import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, PointPropType } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
 import styles from './style';
@@ -23,8 +23,6 @@ const Points = () => {
   const inputXRef = createRef<TextInput>();
   const inputYRef = createRef<TextInput>();
 
-  let editIndex = -1;
-
   //------------------------------------
 
   function handleNavitateToMenu() {
@@ -32,9 +30,20 @@ const Points = () => {
   }
 
   function handleNavigateToGraph() {
-    //navigation.navigate('Graph');
+    if(points.length < 3) {
+      Alert.alert(
+        "Calma aí!",
+        "O mínimo necessário para fazer a regressão linear são 3 pontos!",
+        [
+          { text: "Beleza" }
+        ],
+        { cancelable: false }
+      );
 
-    //mínimo de 3 pontos!
+      return
+    }
+
+    navigation.navigate('Graph', points);
   }
 
   //------------------------------------
@@ -192,6 +201,6 @@ const Points = () => {
       </View>
     </ImageBackground>
   );
-};
+}
 
 export default Points;
