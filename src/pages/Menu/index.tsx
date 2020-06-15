@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 
@@ -12,8 +13,43 @@ const Menu = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
+  function TriggerAlert(message: string) {
+    Alert.alert(
+      "Oops!",
+      message,
+      [
+        { text: 'OK' }
+      ],
+      { cancelable: false }
+    );
+  }
+
+  const storeData = async (key: string, value: string) => {
+    try {
+      await AsyncStorage.setItem(key, value)
+    } catch (e) {
+      TriggerAlert(I18n.t('error.storeError') + e);
+    }
+  }
+
+  //Default config values here
+  const getData = async (key: string) => {
+    try {
+      const value = await AsyncStorage.getItem(key)
+      
+      if(value == null) { //Set for the first time - DEFAULT CONFIGS
+        storeData('@precision', '5');
+        storeData('@style', '1');
+      }
+    } catch(e) {
+      TriggerAlert(I18n.t('error.readError') + e)
+    }
+  }
+
    //Just to force reload the language
-  useEffect(() => {}, [isFocused])
+   useEffect(() => {
+    getData('@precision');
+   }, [isFocused])
 
   function handleNavitateToPoints() {
     navigation.navigate('Points');
@@ -43,7 +79,7 @@ const Menu = () => {
           </View>
 
           <View>
-            <Image style={styles.logo} source={require('../../assets/graphic.png')} />
+            <Image style={styles.logo} source={require('../../assets/logo.png')} />
           </View>
 
           <RectButton style={styles.buttonGo} onPress={handleNavitateToPoints}>

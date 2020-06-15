@@ -49,5 +49,10 @@
 
     "lightMode": "Modo claro",
     "darkMode": "Modo escuro"
+  }, 
+
+  "errors": {
+    "storeError": "Erro no salvamento das configurações!",
+    "readError": "Erro na leitura das configurações!"
   }
 }
