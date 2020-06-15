@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Ubuntu_500Medium',
     maxWidth: 400,
-    marginTop: 12
   },
 
   subtitle: {
@@ -27,17 +26,37 @@ const styles = StyleSheet.create({
 
   box: {
     backgroundColor: '#F3F3F3',
-    marginTop: 12,
+    marginTop: 64,
     padding: 10,
     borderRadius: 10,
 
-    flexDirection: 'row',
-
-    height: 350
+    height: 128
   },
 
-  languagePicker: {
-    
+  miniBox: {
+    flexDirection: 'row'
+  },
+
+  flag: {
+    width: 50,
+    height: 50,
+    marginTop: 5
+  },
+  
+  upDown: {
+    marginTop: 10
+  },
+
+  languageColor: {
+    backgroundColor: '#FFDD00'
+  },
+
+  precisionColor: {
+    backgroundColor: '#ffd500'
+  },
+
+  styleColor: {
+    backgroundColor: '#ffbb00'
   }
 });
 

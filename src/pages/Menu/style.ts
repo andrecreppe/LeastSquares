@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
 
   buttonConfigs: {
-    backgroundColor: '#C8CB34',
+    backgroundColor: '#e6c210',
   },
 
   buttonIcon: {

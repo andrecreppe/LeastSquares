@@ -7,11 +7,12 @@ Adicionar no README
 https://react-native-community.github.io/async-storage/ - ARMAZENAMENTO
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import I18nDefault from 'i18n-js';
 
-import { View, ImageBackground, Text, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, Image } from 'react-native';
+import NumericInput from 'react-native-numeric-input';
 import { Picker } from '@react-native-community/picker';
 import { Feather as Icon } from '@expo/vector-icons';
 
@@ -19,6 +20,9 @@ import I18n from '../../utils/I18n';
 import styles from './style';
 
 const Settings = () => {
+  const currentLanguage = I18nDefault.currentLocale();
+  const currentStyle = 1;
+
   const navigation = useNavigation();
 
   function handleNavigateToMenu() {
@@ -28,6 +32,24 @@ const Settings = () => {
   function handleChangeLanguage(langCode: string) {
     I18nDefault.locale = langCode;
     navigation.goBack();
+  }
+
+  function getCurrentLanguageFlag() {
+    if(currentLanguage == 'pt') {
+      return <Image style={styles.flag} source={require('../../assets/pt.png')} ></Image>
+    } else if(currentLanguage == 'en') {
+      return <Image style={styles.flag} source={require('../../assets/en.png')} ></Image>
+    } else {
+      return <Image style={styles.flag} source={require('../../assets/de.png')} ></Image>
+    }
+  }
+
+  function handleUpdateDecimalSettings(roundPlaces: number) {
+
+  }
+
+  function handleChangeStyle(styleNumber: string) {
+    
   }
 
   return (
@@ -43,25 +65,55 @@ const Settings = () => {
       </View>
 
       <View style={styles.main}>
-        <View>
+        <View style= {[styles.box, styles.languageColor]}>
           <Text style={styles.title}>{I18n.t('settings.languageTitle')}</Text>
-          <Picker
-            selectedValue={I18nDefault.currentLocale()}
-            style={{ height: 50, width: 200 }}
-            onValueChange={(itemValue) => { handleChangeLanguage(itemValue.toString()) }}>
-            <Picker.Item label="English" value="en" />
-            <Picker.Item label="Português" value="pt" />
-          </Picker>
+          
+          <View style={styles.miniBox} >
+            <Picker
+              selectedValue={currentLanguage}
+              style={{ height: 50, width: 200, marginRight: 50, marginTop: 10 }}
+              onValueChange={(itemValue) => { handleChangeLanguage(itemValue.toString()) }}>
+              <Picker.Item label="English" value="en" />
+              <Picker.Item label="Português" value="pt" />
+              <Picker.Item label="Deutsch" value="de" />
+            </Picker>
+
+            {getCurrentLanguageFlag()}
+          </View>
         </View>
 
-        <View>
+        <View style={[styles.box, styles.precisionColor]}>
           <Text style={styles.title}>{I18n.t('settings.decimalPlaces')}</Text>
-          <Text>Numeric updown</Text>
+          
+          <NumericInput 
+            initValue={5}
+            maxValue={10}
+            minValue={0}
+            onChange={value => handleUpdateDecimalSettings(value)}
+
+            containerStyle={styles.upDown}
+            textColor='#000'
+            leftButtonBackgroundColor='#bfbfbf'
+            rightButtonBackgroundColor='#a8a8a8' 
+            totalWidth={240} 
+            totalHeight={50} 
+            iconSize={25}       
+            rounded
+          />
         </View>
 
-        <View>
+        <View style={[styles.box, styles.styleColor]}>
           <Text style={styles.title}>{I18n.t('settings.style')}</Text>
-          <Text>Light mode // Dark mode</Text>
+          
+          <View style={styles.miniBox} >
+            <Picker
+              selectedValue={currentStyle}
+              style={{ height: 50, width: 200, marginTop: 10 }}
+              onValueChange={(itemValue) => { handleChangeStyle(itemValue.toString()) }}>
+              <Picker.Item label={I18n.t('settings.lightMode')} value={1} />
+              <Picker.Item label={I18n.t('settings.darkMode')} value={2} />
+            </Picker>
+          </View>
         </View>
       </View>
     </ImageBackground>
