@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
 
   logo: {
     alignSelf: 'center',
-    marginTop: 72,
+    marginTop: 50,
+    marginLeft: -5,
     marginBottom: 128,
   },
 
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: -20,
   },
 
   buttomBottom: {
