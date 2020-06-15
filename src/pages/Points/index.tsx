@@ -5,6 +5,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
+import I18n from '../../utils/I18n';
 import styles from './style';
 
 interface Point {
@@ -31,20 +32,18 @@ const Points = () => {
 
   function sendAlert(message: string) {
     Alert.alert(
-      "Calma aí!",
+      I18n.t('points.alertTitle'),
       message,
       [
-        { text: "Beleza" }
+        { text: I18n.t('points.alertButton') }
       ],
       { cancelable: false }
     );
   }
 
   function handleNavigateToGraph() {
-    let message = "";
-
     if(points.length < 3) {
-      sendAlert("O mínimo necessário para fazer uma regressão linear são 3 pontos!");
+      sendAlert(I18n.t('points.alertLength'));
       return
     }
 
@@ -58,7 +57,7 @@ const Points = () => {
     }
 
     if(count === points.length) {
-      sendAlert("Não faz sentido calcular a regressão de pontos idênticos!")
+      sendAlert(I18n.t('points.alertEqualPoitns'))
       return
     }
 
@@ -126,7 +125,7 @@ const Points = () => {
       <View style={styles.main}>
         <View>
           <Text style={styles.title}>
-            Insira um ponto
+            {I18n.t('points.insertPoint')}
           </Text>
 
           <View style={styles.box}>
@@ -167,7 +166,7 @@ const Points = () => {
         <View>
           <View style={styles.boxClear}>
             <Text style={styles.title}>
-              Pontos registrados
+              {I18n.t('points.registeredPoints')}
             </Text>
 
             <RectButton 
@@ -195,7 +194,7 @@ const Points = () => {
                   </RectButton>
                 </View>
               )) : (
-                <Text>Insira pelo menos 3 pontos para começar!</Text>
+                <Text>{I18n.t('points.cleanRegistered')}</Text>
               )}
              </ScrollView>
             </View>
@@ -205,7 +204,7 @@ const Points = () => {
         <View style={styles.footer}>
           <View style={styles.box}>
             <Text style={styles.subtitle}>
-              *Não se preocupe, se for calcular e voltar, os dados não serão perdidos!
+              {I18n.t('points.keepCalm')}
             </Text>
           </View>
 
@@ -214,7 +213,7 @@ const Points = () => {
               <IconM name='functions' color="#FFF" size={28} />
             </View>
             <Text style={styles.buttonText}>
-              Calcular
+              {I18n.t('points.calculateButton')}
             </Text>
           </RectButton>
         </View>

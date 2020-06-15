@@ -4,7 +4,9 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, ImageBackground, Text, TouchableOpacity } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
+import I18n from '../../utils/I18n';
 import styles from './style';
+
 import LeastSquares from '../../math/LeastSquares';
 
 interface DataPoints {
@@ -51,13 +53,13 @@ const Graph = () => {
 
         <View style={styles.footer}>
           <View style={[styles.resultsBox, styles.colorCoeficient]}>
-            <Text style={styles.subtitleTitle}>Coeficientes da reta:</Text>
+            <Text style={styles.subtitleTitle}>{I18n.t('graph.coeficientsTitle')}</Text>
             <Text style={styles.subtitle}>a = {results.a}</Text>
             <Text style={styles.subtitle}>b = {results.b}</Text>
           </View>
 
           <View style={[styles.resultsBox, styles.colorUncertanty]}>
-            <Text style={styles.subtitleTitle}>Incertezas:</Text>
+            <Text style={styles.subtitleTitle}>{I18n.t('graph.uncertantyTitle')}</Text>
             <Text style={styles.subtitle}>δa = {results.deltaA}</Text>
             <Text style={styles.subtitle}>δb = {results.deltaB}</Text>
           </View>

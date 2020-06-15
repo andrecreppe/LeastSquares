@@ -1,12 +1,15 @@
-import React from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import { View, ImageBackground, Text, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, Picker } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
+import I18n from '../../utils/I18n';
 import styles from './style';
 
 const Settings = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState<number>()
+
   const navigation = useNavigation();
 
   function handleNavigateToMenu() {
@@ -27,11 +30,23 @@ const Settings = () => {
 
       <View style={styles.main}>
         <View>
-          <Text style={styles.title}>Idioma</Text>
+          <Text style={styles.title}>{I18n.t('settings.languageTitle')}</Text>
+          <Picker 
+            style={styles.languagePicker}
+          >
+            <Picker.Item label='English' value='en' />
+            <Picker.Item label='Português' value='pt' />
+          </Picker>
         </View>
 
         <View>
-          <Text style={styles.title}>Quantidade de casas decimais</Text>
+          <Text style={styles.title}>{I18n.t('settings.decimalPlaces')}</Text>
+          <Text>Numeric updown</Text>
+        </View>
+
+        <View>
+          <Text style={styles.title}>{I18n.t('settings.style')}</Text>
+          <Text>Light mode // Dark mode</Text>
         </View>
       </View>
     </ImageBackground>

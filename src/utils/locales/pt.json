@@ -1,0 +1,50 @@
+{
+  "menu": {
+    "leastSquares": "Mínimos quadrados",
+
+    "start": "Começar",
+
+    "about": "Sobre",
+    "settings": "Ajustes"
+  },
+
+  "points": {
+    "alertTitle": "Calma aí!",
+    "alertButton": "Beleza",
+    "alertLength": "O mínimo necessário para fazer uma regressão linear são 3 pontos!",
+    "alertEqualPoitns": "Não faz sentido calcular a regressão de pontos idênticos!",
+
+    "insertPoint": "Insira um ponto",
+    "registeredPoints": "Pontos registrados",
+    "cleanRegistered": "Insira pelo menos 3 pontos para começar!",
+    "keepCalm": "*Não se preocupe, se for calcular e voltar, os dados não serão perdidos!",
+    "calculateButton": "Calcular"
+  },
+
+  "graph": {
+    "coeficientsTitle": "Coeficientes da reta:",
+
+    "uncertantyTitle": "Incertezas:"
+  },
+
+  "about": {
+    "leastSquaresTitle": "O que é são os Mínimos Quadrados?",
+    "leastSquaresInfo": "O método dos Mínimos Quadrados é uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a discrepância entre eles.",
+
+    "contactTitle": "Contato",
+    "contactInfo": "Encontrou um bug? Deseja ver uma nova funcionalidade? Fale comigo!",
+
+    "storeTitle": "Avalie o app na PlayStore",
+    "storeInfo": "Sua opinião é importante para o aplicativo ser o mais sensacional possível.",
+
+    "version": "v1.0 - Junho/2020"
+  },
+
+  "settings": {
+    "languageTitle": "Idioma",
+
+    "decimalPlaces": "Cadas decimais",
+
+    "style": "Estilo"
+  }
+}

@@ -12,17 +12,16 @@ const styles = StyleSheet.create({
 
   title: {
     color: '#322153',
-    fontSize: 26,
+    fontSize: 30,
     fontFamily: 'Ubuntu_500Medium',
     maxWidth: 400,
-    marginTop: 12,
-    textAlign: "center"
+    marginTop: 12
   },
 
   subtitle: {
     marginLeft: 5,
     fontFamily: 'Ubuntu_400Regular',
-    fontSize: 20,
+    fontSize: 24,
     color: '#FFF'
   },
 
@@ -37,10 +36,9 @@ const styles = StyleSheet.create({
     height: 350
   },
 
-  footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
+  languagePicker: {
+    
+  }
 });
 
 export default styles;

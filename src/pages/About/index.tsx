@@ -5,6 +5,7 @@ import * as MailComposer from 'expo-mail-composer';
 import { View, ImageBackground, Text, TouchableOpacity, Linking } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
+import I18n from '../../utils/I18n';
 import styles from './style';
 
 const About = () => {
@@ -40,19 +41,19 @@ const About = () => {
       <View style={styles.main}>
         <View style={[styles.box, styles.lightBlue]}>
           <Text style={styles.title}>
-            O que é são os Mínimos Quadrados?
+            {I18n.t('about.leastSquaresTitle')}
           </Text>
           <Text style={styles.subtitle}>
-            O método dos Mínimos Quadrados é uma técnica de otimização matemática que procura encontrar o melhor ajuste para um conjunto de dados tentando minimizar a discrepância entre eles.
+            {I18n.t('about.leastSquaresInfo')}
           </Text>
         </View>
 
         <View style={[styles.box, styles.blue]}>
           <Text style={styles.title}>
-            Contato
+            {I18n.t('about.contactTitle')}
           </Text>
           <Text style={styles.subtitle}>
-            Encontrou um bug? Deseja ver uma nova funcionalidade? Fale comigo!
+            {I18n.t('about.contactInfo')}
           </Text>
           <TouchableOpacity onPress={handleComposeMail}>
             <Text style={[styles.subtitle, styles.contactText]}>
@@ -65,17 +66,17 @@ const About = () => {
         <View style={[styles.box, styles.darkBlue]}>
           <TouchableOpacity onPress={handlePlayRedirect}>
             <Text style={styles.title}>
-              Avalie o app na PlayStore
+              {I18n.t('about.storeTitle')}
             </Text>
           </TouchableOpacity>
           <Text style={styles.subtitle}>
-            Sua opinião é importante para o aplicativo ser o mais sensacional possível.
+            {I18n.t('about.storeInfo')}
           </Text>
         </View>
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.version}>v1.0 - Junho/2020</Text>
+        <Text style={styles.version}>{I18n.t('about.version')}</Text>
       </View>
     </ImageBackground>
   );

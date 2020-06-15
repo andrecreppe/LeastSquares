@@ -5,6 +5,7 @@ import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform } fr
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 
+import I18n from '../../utils/I18n';
 import styles from './style';
 
 const Menu = () => {
@@ -34,7 +35,7 @@ const Menu = () => {
       >
         <View style={styles.main}>
           <View>
-            <Text style={styles.title}>Mínimos quadrados</Text>
+            <Text style={styles.title}>{I18n.t('menu.leastSquares')}</Text>
           </View>
 
           <View>
@@ -48,7 +49,7 @@ const Menu = () => {
               </Text>
             </View>
             <Text style={styles.buttonText}>
-              Começar
+              {I18n.t('menu.start')}
             </Text>
           </RectButton>
         </View>
@@ -59,7 +60,7 @@ const Menu = () => {
               <Icon name='info' color="#FFF" size={22} />
             </View>
             <Text style={styles.buttonText}>
-              Sobre
+              {I18n.t('menu.about')}
             </Text>
           </RectButton>
 
@@ -70,7 +71,7 @@ const Menu = () => {
               </Text>
             </View>
             <Text style={styles.buttonText}>
-              Ajustes
+              {I18n.t('menu.settings')}
             </Text>
           </RectButton>
         </View>
