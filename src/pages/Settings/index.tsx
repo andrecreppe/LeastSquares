@@ -1,3 +1,12 @@
+/*
+Adicionar no README
+Ícones feitos por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/br/" title="Flaticon"> www.flaticon.com</a>
+*/
+
+/*
+https://react-native-community.github.io/async-storage/ - ARMAZENAMENTO
+*/
+
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import I18nDefault from 'i18n-js';
@@ -18,7 +27,7 @@ const Settings = () => {
 
   function handleChangeLanguage(langCode: string) {
     I18nDefault.locale = langCode;
-    //navigation.goBack();
+    navigation.goBack();
   }
 
   return (

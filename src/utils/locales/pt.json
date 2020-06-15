@@ -43,8 +43,8 @@
   "settings": {
     "languageTitle": "Idioma",
 
-    "decimalPlaces": "Cadas decimais",
+    "decimalPlaces": "Casas decimais",
 
-    "style": "Estilo"
+    "style": "Estilo do app"
   }
 }

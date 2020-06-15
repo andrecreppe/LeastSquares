@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
@@ -10,6 +10,10 @@ import styles from './style';
 
 const Menu = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+   //Just to force reload the language
+  useEffect(() => {}, [isFocused])
 
   function handleNavitateToPoints() {
     navigation.navigate('Points');
