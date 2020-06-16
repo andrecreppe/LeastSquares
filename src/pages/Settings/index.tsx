@@ -120,9 +120,9 @@ const Settings = () => {
               selectedValue={currentLanguage}
               style={{ height: 50, width: 200, marginRight: 50, marginTop: 10 }}
               onValueChange={(itemValue) => { handleChangeLanguage(itemValue.toString()) }}>
+              <Picker.Item label="Deutsch" value="de" />
               <Picker.Item label="English" value="en" />
               <Picker.Item label="Português" value="pt" />
-              <Picker.Item label="Deutsch" value="de" />
             </Picker>
 
             {getCurrentLanguageFlag()}

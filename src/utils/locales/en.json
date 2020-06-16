@@ -1,8 +1,59 @@
 {
   "menu": {
-    "leastSquares": "Least Squares",
+    "leastSquares": "Least squares",
+
     "start": "Start",
+
     "about": "About",
     "settings": "Settings"
+  },
+
+  "points": {
+    "alertTitle": "Hold on!",
+    "alertButton": "OK",
+    "alertLength": "Is needed at least 3 points to calculate the linear regression!",
+    "alertEqualPoitns": "Does not make sense to calculate the regression of identical points!",
+
+    "insertPoint": "Insert a point",
+    "registeredPoints": "Registered points",
+    "cleanRegistered": "Insert at least 3 points to begin!",
+    "keepCalm": "*Don't worry, if you calculate and return, the points are not going to be lost!",
+    
+    "calculateButton": "Calculate"
+  },
+
+  "graph": {
+    "coeficientsTitle": "Line coeficients:",
+
+    "uncertantyTitle": "Uncertainties:"
+  },
+
+  "about": {
+    "leastSquaresTitle": "What is the Least Squares method?",
+    "leastSquaresInfo": "The method of Least Squares is a standard approach in regression analysis to approximate the solution of overdetermined systems by minimizing the distance beteween data points in one equation.",
+
+    "contactTitle": "Contact",
+    "contactInfo": "Found a bug? Want to see a new feature? Speak with me!",
+
+    "storeTitle": "Rate the app in the Store",
+    "storeInfo": "Your opinion is important to make this app an amazing tool!",
+
+    "version": "v1.0 - June/2020"
+  },
+
+  "settings": {
+    "languageTitle": "Language",
+
+    "decimalPlaces": "Decimal precision",
+
+    "style": "App style",
+
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode"
+  }, 
+
+  "errors": {
+    "storeError": "Error during configs saving!",
+    "readError": "Error during configs reading!"
   }
 }

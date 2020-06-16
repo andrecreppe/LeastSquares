@@ -1,1 +1,60 @@
-{}
+{
+    "menu": {
+      "leastSquares": "Kleinsten Quadrate",
+  
+      "start": "Beginnen",
+  
+      "about": "Über",
+      "settings": "Einstellung"
+    },
+  
+    "points": {
+    "alertTitle": "Warten!",
+    "alertButton": "OK",
+    "alertLength": "Es benötigte mindestens 3 Punkte, um die lineare Regression zu berechnen!",
+    "alertEqualPoitns": "Es macht keinen Sinn, die Regression identischer Punkte zu berechnen!",
+
+    "insertPoint": "Einfügen eines Punktes",
+    "registeredPoints": "Eingetragene Punkte",
+    "cleanRegistered": "Fügen Sie mindestens 3 Punkte ein, um zu beginnen!",
+    "keepCalm": "*Keine Sorge, wenn Sie berechnen und zurück, werden die Punkte nicht verloren gehen!",
+    
+    "calculateButton": "Berechnen"
+    },
+
+    "graph": {
+    "coeficientsTitle": "Zeilenkoefizienten:",
+
+    "uncertantyTitle": "Ungewissheiten:"
+    },
+
+    "about": {
+    "leastSquaresTitle": "Was ist die Methode der Kleinsten Quadrate?",
+    "leastSquaresInfo": "Die Methode der Least Squares ist ein Standardansatz in der Regressionsanalyse, um die Lösung von überbestimmten Systemen anzunähern, indem der Abstand zwischen Datenpunkten in einer Gleichung minimiert wird.",
+
+    "contactTitle": "Kontact",
+    "contactInfo": "Haben Sie einen Bug gefunden? Möchten Sie ein neues Feature sehen? Sprich mit mir!",
+
+    "storeTitle": "Bewerten Sie die App im Store",
+    "storeInfo": "Ihre Meinung ist wichtig, um diese App zu einem erstaunlichen Tool zu machen!",
+
+    "version": "v1.0 - Juni/2020"
+    },
+
+    "settings": {
+    "languageTitle": "Sprachen",
+
+    "decimalPlaces": "Dezimalgenauigkeit",
+
+    "style": "App Art",
+
+    "lightMode": "Licht modus",
+    "darkMode": "Dunkel modus"
+    }, 
+
+    "errors": {
+    "storeError": "Fehler beim Speichern von Einstellungen!",
+    "readError": "Fehler beim Lesen von Einstellungen!"
+    }
+  }
+  
