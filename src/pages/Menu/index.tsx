@@ -38,7 +38,7 @@ const Menu = () => {
       const value = await AsyncStorage.getItem(key)
       
       if(value == null) { //Set for the first time - DEFAULT CONFIGS
-        storeData('@precision', '5');
+        storeData('@precision', '6');
         storeData('@style', '1');
       }
     } catch(e) {
