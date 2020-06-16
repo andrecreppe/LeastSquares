@@ -1,12 +1,14 @@
-import React, { useState, createRef } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, createRef, useEffect } from 'react';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { RectButton } from 'react-native-gesture-handler';
 import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
-import styles from './style';
+import lightMode from './styleLight';
+import darkMode from './styleDark';
 
 interface Point {
   index: number,
@@ -15,14 +17,57 @@ interface Point {
 }
 
 const Points = () => {
+  const [style, setStyle] = useState<number>(0);
   const [typedX, setTypedX] = useState<string>('');
   const [typedY, setTypedY] = useState<string>('');
   const [points, setPoints] = useState<Point[]>([]);
 
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
 
   const inputXRef = createRef<TextInput>();
   const inputYRef = createRef<TextInput>();
+
+  const styles = (style == 1) ? lightMode : darkMode;
+  const background = (style == 1) 
+    ? require('../../assets/background-1.png')
+    : require('../../assets/background-2.png')
+  const returnButton = (style == 1)
+    ? <Icon name='arrow-left' size={28} color='#000' />
+    : <Icon name='arrow-left' size={28} color='#FFF' />
+  //---------------------------------------------------
+
+  useEffect(() => {
+    loadConfiguredData();
+  }, [isFocused]);
+
+  function TriggerAlert(message: string) {
+    Alert.alert(
+      "Oops!",
+      message,
+      [
+        { text: 'OK' }
+      ],
+      { cancelable: false }
+    );
+  }
+
+  const getData = async (key: string) => {
+    try {
+      const value = await AsyncStorage.getItem(key)
+
+      if(value !== null) {
+        return value
+      }
+    } catch(e) {
+      TriggerAlert(I18n.t('error.readError') + e)
+      }
+  }
+  
+  async function loadConfiguredData() {
+    const memoryStyle = await getData('@style');
+    setStyle(Number(memoryStyle));
+  }
 
   //------------------------------------
 
@@ -113,12 +158,12 @@ const Points = () => {
   return (
     <ImageBackground 
       style={styles.container}
-      source={require('../../assets/background-2.png')}
+      source={background}
       imageStyle={{ width: 580, height: 880 }}
     >
       <View>
         <TouchableOpacity onPress={handleNavitateToMenu}>
-            <Icon name='arrow-left' size={28} color='#000000' />
+          {returnButton}
         </TouchableOpacity>
       </View>
 
@@ -194,7 +239,7 @@ const Points = () => {
                   </RectButton>
                 </View>
               )) : (
-                <Text>{I18n.t('points.cleanRegistered')}</Text>
+                <Text style={styles.darkMode}>{I18n.t('points.cleanRegistered')}</Text>
               )}
              </ScrollView>
             </View>

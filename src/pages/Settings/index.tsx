@@ -14,7 +14,8 @@ import { Picker } from '@react-native-community/picker';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
-import styles from './style';
+import lightMode from './styleLight';
+import darkMode from './styleDark';
 
 const Settings = () => {
   const currentLanguage = I18nDefault.currentLocale();
@@ -23,6 +24,11 @@ const Settings = () => {
 
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+
+  const styles = (style == 1) ? lightMode : darkMode;
+  const background = (style == 1) 
+    ? require('../../assets/background-1.png')
+    : require('../../assets/background-2.png')
 
   function handleNavigateToMenu() {
     navigation.goBack();
@@ -102,7 +108,7 @@ const Settings = () => {
   return (
     <ImageBackground 
       style={styles.container}
-      source={require('../../assets/background-2.png')}
+      source={background}
       imageStyle={{ width: 580, height: 880 }}
     >
       <View>

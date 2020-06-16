@@ -6,7 +6,8 @@ import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-nati
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
-import styles from './style';
+import lightMode from './styleLight';
+import darkMode from './styleDark';
 
 import LeastSquares from '../../math/LeastSquares';
 
@@ -18,6 +19,7 @@ interface DataPoints {
 
 const Graph = () => {
   const [precision, setPrecision] = useState<number>(0);
+  const [style, setStyle] = useState<number>(0);
 
   const navigation = useNavigation();
   const isFocused = useIsFocused();
@@ -25,6 +27,14 @@ const Graph = () => {
 
   const pointsData = route.params as DataPoints[];
   const results = LeastSquares.Regression(pointsData);
+
+  const styles = (style == 1) ? lightMode : darkMode;
+  const background = (style == 1) 
+    ? require('../../assets/background-1.png')
+    : require('../../assets/background-2.png')
+  const returnButton = (style == 1)
+    ? <Icon name='arrow-left' size={28} color='#000' />
+    : <Icon name='arrow-left' size={28} color='#FFF' />
 
   //-------------------------------------
 
@@ -58,6 +68,9 @@ const Graph = () => {
   async function loadConfiguredData() {
     const memoryPrecision = await getData('@precision');
     setPrecision(Number(memoryPrecision));
+
+    const memoryStyle = await getData('@style');
+    setStyle(Number(memoryStyle));
   }
 
   //-----------------------------------
@@ -69,12 +82,12 @@ const Graph = () => {
   return (
     <ImageBackground 
       style={styles.container}
-      source={require('../../assets/background-2.png')}
+      source={background}
       imageStyle={{ width: 580, height: 880 }}
     >
       <View>
         <TouchableOpacity onPress={handleNavigateToPoints}>
-            <Icon name='arrow-left' size={28} color='#000000' />
+          {returnButton}
         </TouchableOpacity>
       </View>
 

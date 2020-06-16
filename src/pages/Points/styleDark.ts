@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#322153',
+    color: '#FFF',
     fontSize: 26,
     fontFamily: 'Ubuntu_500Medium',
     maxWidth: 400,
@@ -20,11 +20,12 @@ const styles = StyleSheet.create({
 
   subtitle: {
     fontFamily: 'Ubuntu_400Regular',
+    color: '#FFF',
     fontSize: 18,
   },
 
   box: {
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#333333',
     marginTop: 12,
     padding: 10,
     borderRadius: 10,
@@ -54,8 +55,9 @@ const styles = StyleSheet.create({
     maxWidth: 125,
     borderRadius: 10,
     borderWidth: .5,
-    borderColor: '#009688',
-    fontSize: 18
+    borderColor: '#333',
+    fontSize: 18,
+    color: '#fff'
   },
 
   dataInputFormat: {
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
   dataInputText:{
     fontFamily: 'Ubuntu_400Regular',
     fontSize: 28,
+    color: '#fff'
   },
 
   savePoint: {
@@ -86,7 +89,8 @@ const styles = StyleSheet.create({
   point: {
     flexDirection: 'row',
     width: 300,
-    fontSize: 18
+    fontSize: 18,
+    color: '#FFF'
   },
 
   pointOptions: {
@@ -124,6 +128,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu_400Regular',
     fontSize: 16,
     marginLeft: -30
+  },
+
+  darkMode: {
+    color: '#FFF'
   }
 });
 

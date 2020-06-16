@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -7,11 +7,22 @@ import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
-import styles from './style';
+import lightMode from './styleLight';
+import darkMode from './styleDark';
 
 const Menu = () => {
+  const [style, setStyle] = useState<number>();
+
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+
+  const styles = (style == 1) ? lightMode : darkMode;
+  const logo = (style == 1) 
+    ? <Image style={styles.logo} source={require('../../assets/logo-1.png')} />
+    : <Image style={styles.logo} source={require('../../assets/logo-2.png')} />
+  const background = (style == 1) 
+    ? require('../../assets/background-1.png')
+    : require('../../assets/background-2.png')
 
   function TriggerAlert(message: string) {
     Alert.alert(
@@ -40,15 +51,22 @@ const Menu = () => {
       if(value == null) { //Set for the first time - DEFAULT CONFIGS
         storeData('@precision', '6');
         storeData('@style', '1');
+      } else {
+        return value;
       }
     } catch(e) {
       TriggerAlert(I18n.t('error.readError') + e)
     }
   }
 
+  async function loadConfiguredData() {
+    const memoryStyle = await getData('@style');
+    setStyle(Number(memoryStyle));
+  }
+
    //Just to force reload the language
    useEffect(() => {
-    getData('@precision');
+    loadConfiguredData();
    }, [isFocused])
 
   function handleNavitateToPoints() {
@@ -70,7 +88,7 @@ const Menu = () => {
     >
       <ImageBackground 
         style={styles.container}
-        source={require('../../assets/background-2.png')}
+        source={background}
         imageStyle={{ width: 580, height: 880 }}
       >
         <View style={styles.main}>
@@ -79,7 +97,7 @@ const Menu = () => {
           </View>
 
           <View>
-            <Image style={styles.logo} source={require('../../assets/logo.png')} />
+            {logo}
           </View>
 
           <RectButton style={styles.buttonGo} onPress={handleNavitateToPoints}>
