@@ -62,6 +62,10 @@ const styles = StyleSheet.create({
 
   colorUncertanty: {
     backgroundColor: '#CB7334',
+  },
+
+  colorGraph: {
+    backgroundColor: '#333333'
   }
 });
 

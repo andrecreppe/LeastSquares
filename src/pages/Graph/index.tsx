@@ -55,7 +55,9 @@ const Graph = () => {
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
-
+  const stroke = (style == 1)
+    ? ['black', 'red', 'blue']
+    : ['white', 'red', '#00FFFF']
   //-------------------------------------
 
   useEffect(() => {
@@ -116,20 +118,20 @@ const Graph = () => {
           <Text style={styles.title}>y = ax + b</Text>
         </View>
 
-        <View style={styles.box}>
+        <View style={[styles.box, styles.colorGraph]}>
           <Svg height={graphHeight} width={graphWidth}>
-            <Line x1="0" y1="100%" x2="100%" y2="100%" stroke="black" strokeWidth="5" />
-            <Line x1="0" y1="100%" x2="0" y2="0" stroke="black" strokeWidth="5" />
+            <Line x1="0" y1="100%" x2="100%" y2="100%" stroke={stroke[0]} strokeWidth="5" />
+            <Line x1="0" y1="100%" x2="0" y2="0" stroke={stroke[0]} strokeWidth="5" />
 
             {pointsData.map((point) => {
               const x = (point.x / maxX) - 0.1;
               const y = 1 - (point.y / maxY) + 0.1;
 
-              return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill="red" />
+              return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill={stroke[1]} />
             })}
 
             <Line 
-              stroke="blue" strokeWidth="3"
+              stroke={stroke[2]} strokeWidth="3"
               x1="0" y1={(1-results.b/maxY)*graphHeight} //y = b
               x2={graphWidth} y2={(1-yRegression/maxY)*graphHeight} //y = ax(max) + b
             />

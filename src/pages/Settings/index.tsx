@@ -29,6 +29,9 @@ const Settings = () => {
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
     : require('../../assets/background-2.png')
+  const returnButton = (style == 1)
+    ? <Icon name='arrow-left' size={28} color='#000' />
+    : <Icon name='arrow-left' size={28} color='#FFF' />
 
   function handleNavigateToMenu() {
     navigation.goBack();
@@ -113,7 +116,7 @@ const Settings = () => {
     >
       <View>
         <TouchableOpacity onPress={handleNavigateToMenu}>
-            <Icon name='arrow-left' size={28} color='#000000' />
+          {returnButton}
         </TouchableOpacity>
       </View>
 
