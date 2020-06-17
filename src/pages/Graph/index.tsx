@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
+import Svg, { Line, Circle } from 'react-native-svg';
+
 import I18n from '../../utils/I18n';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
@@ -25,8 +27,26 @@ const Graph = () => {
   const isFocused = useIsFocused();
   const route = useRoute();
 
+  const graphWidth = 320
+  const graphHeight = 320
+
+  //-------------------------------------
+
   const pointsData = route.params as DataPoints[];
+  
+  const maxX = pointsData.sort((a, b) => b.x - a.x)[0].x;
+  const maxY = pointsData.sort((a, b) => b.y - a.y)[0].y;
+
+  pointsData.sort((a, b) => a.index - b.index);
+
+  //-------------------------------------
+
   const results = LeastSquares.Regression(pointsData);
+
+  //y = ax + b
+  const yRegression = (results.a * maxX) + results.b
+
+  //-------------------------------------
 
   const styles = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
@@ -97,7 +117,23 @@ const Graph = () => {
         </View>
 
         <View style={styles.box}>
-          <Text>GRÁFICO AQUI</Text>
+          <Svg height={graphHeight} width={graphWidth}>
+            <Line x1="0" y1="100%" x2="100%" y2="100%" stroke="black" strokeWidth="5" />
+            <Line x1="0" y1="100%" x2="0" y2="0" stroke="black" strokeWidth="5" />
+
+            {pointsData.map((point) => {
+              const x = (point.x / maxX) - 0.1;
+              const y = 1 - (point.y / maxY) + 0.1;
+
+              return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill="red" />
+            })}
+
+            <Line 
+              stroke="blue" strokeWidth="3"
+              x1="0" y1={(1-results.b/maxY)*graphHeight} //y = b
+              x2={graphWidth} y2={(1-yRegression/maxY)*graphHeight} //y = ax(max) + b
+            />
+          </Svg>
         </View>
 
         <View style={styles.footer}>
