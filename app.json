@@ -4,8 +4,7 @@
     "slug": "LeastSquares",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,14 +14,22 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
+
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andrecreppe.LeastSquares",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.andrecreppe.LeastSquares",
+      "versionCode": 1
     }
   }
 }
