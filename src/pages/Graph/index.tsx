@@ -30,7 +30,7 @@ const Graph = () => {
   const route = useRoute();
 
   const graphWidth = Dimensions.get('window').width * 0.78
-  const graphHeight = Dimensions.get('window').width * 0.78
+  const graphHeight = Dimensions.get('window').height * 0.39
 
   //-------------------------------------
 

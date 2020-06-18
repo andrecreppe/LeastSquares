@@ -111,15 +111,19 @@ const Points = () => {
       return;
     }
 
-    //NaN error
-    count = 0
+    //NaN error - all in X or Y
+    let countX = 0;
+    let countY = 0;
     for(let i=0; i<points.length; i++) {
+      if(points[i].x == 0) {
+        countX++;
+      }
       if(points[i].y == 0) {
-        count++;
+        countY++;
       }
     }
 
-    if(count == points.length) {
+    if(countX == points.length || countY == points.length) {
       TriggerAlert(I18n.t('errors.nanError'));
       return;
     }

@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
 
   contactText: {
-    color: '#001AFF'
+    color: '#001AFF',
+    fontStyle: 'italic'
   },
 
   version: {

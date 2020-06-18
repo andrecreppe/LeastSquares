@@ -107,7 +107,7 @@ const About = () => {
             {I18n.t('about.contactInfo')}
           </Text>
           <TouchableOpacity onPress={handleComposeMail}>
-            <Text style={[styles.subtitle, styles.contactText]}>
+            <Text style={[styles.subtitle, theme.contactText]}>
               andrecrepper@gmail.com{"\n"}
               @andrecreppe
             </Text>
