@@ -12,12 +12,13 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F4F4F4"
     },
 
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    
     "assetBundlePatterns": [
       "**/*"
     ],
