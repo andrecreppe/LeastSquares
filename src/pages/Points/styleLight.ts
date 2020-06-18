@@ -1,134 +1,40 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 32,
-  },
-
-  main: {
-    flex: 1,
-  },
-
   title: {
-    color: '#322153',
-    fontSize: 26,
-    fontFamily: 'Ubuntu_500Medium',
-    maxWidth: 400,
-    marginTop: 12
+    color: '#322153'
   },
 
   subtitle: {
-    fontFamily: 'Ubuntu_400Regular',
-    fontSize: 18,
+    color: '#000'
   },
 
   box: {
-    backgroundColor: '#F3F3F3',
-    marginTop: 12,
-    padding: 10,
-    borderRadius: 10,
-
-    flexDirection: 'row'
-  },
-
-  boxClear: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    flexDirection: 'row'
-  },
-
-  bigBox: {
-    height: 350
-  },
-
-  reset: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    flex: 1
+    backgroundColor: '#F3F3F3'
   },
 
   dataInput: {
-    textAlign: 'center',
-    height: 40,
-    maxWidth: 125,
-    borderRadius: 10,
-    borderWidth: .5,
     borderColor: '#F3F3F3',
-    fontSize: 18
-  },
-
-  dataInputFormat: {
-    flexDirection: 'row'
+    color: '#000'
   },
 
   dataInputText:{
-    fontFamily: 'Ubuntu_400Regular',
-    fontSize: 28,
-  },
-
-  savePoint: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    flex: 1
-  },
-
-  scroll: {
-    width: 325,
-  },
-
-  points: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    marginBottom: 10
+    color: '#000'
   },
 
   point: {
-    flexDirection: 'row',
-    width: 300,
-    fontSize: 18
-  },
-
-  pointOptions: {
-    alignItems: 'flex-end',
-  },
-
-  footer: {
-    flex: 1,
-    justifyContent: 'flex-end',
+    color: '#000'
   },
 
   buttonCalculate: {
-    backgroundColor: '#34CB79',
-    height: 60,
-    flexDirection: 'row',
-    borderRadius: 10,
-    overflow: 'hidden',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-
-  buttonIcon: {
-    height: 60,
-    width: 60,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: '#34CB79'
   },
 
   buttonText: {
-    flex: 1,
-    justifyContent: 'center',
-    textAlign: 'center',
-    color: '#FFF',
-    fontFamily: 'Ubuntu_400Regular',
-    fontSize: 16,
-    marginLeft: -30
+    color: '#FFF'
   },
 
-  darkMode: {
-    //you know the name: gambiarra
-  }
+  darkMode: {}
 });
 
 export default styles;

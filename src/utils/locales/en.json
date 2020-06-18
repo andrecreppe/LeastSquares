@@ -54,6 +54,7 @@
 
   "errors": {
     "storeError": "Error during configs saving!",
-    "readError": "Error during configs reading!"
+    "readError": "Error during configs reading!",
+    "nanError": "Error during calculations: invalid data set!"
   }
 }

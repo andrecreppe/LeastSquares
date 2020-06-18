@@ -7,6 +7,8 @@ import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, A
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
+
+import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
@@ -28,13 +30,17 @@ const Points = () => {
   const inputXRef = createRef<TextInput>();
   const inputYRef = createRef<TextInput>();
 
-  const styles = (style == 1) ? lightMode : darkMode;
+  const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
     : require('../../assets/background-2.png')
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
+  const trashButton = (style == 1)
+  ? <Icon name='trash-2' color="#000" size={28} />
+  : <Icon name='trash-2' color="#FFF" size={28} />
+
   //---------------------------------------------------
 
   useEffect(() => {
@@ -89,21 +95,33 @@ const Points = () => {
   function handleNavigateToGraph() {
     if(points.length < 3) {
       sendAlert(I18n.t('points.alertLength'));
-      return
+      return;
     }
 
     //All the same points
     let count = 1;
-    
     for(let i=1; i<points.length; i++) {
-      if((points[0].x == points[i].x) && points[0].y == points[i].y) {
+      if((points[0].x == points[i].x) && (points[0].y == points[i].y)) {
         count++;
       }
     }
 
     if(count === points.length) {
       sendAlert(I18n.t('points.alertEqualPoitns'))
-      return
+      return;
+    }
+
+    //NaN error
+    count = 0
+    for(let i=0; i<points.length; i++) {
+      if(points[i].y == 0) {
+        count++;
+      }
+    }
+
+    if(count == points.length) {
+      TriggerAlert(I18n.t('errors.nanError'));
+      return;
     }
 
     //Generate the graph
@@ -169,35 +187,35 @@ const Points = () => {
 
       <View style={styles.main}>
         <View>
-          <Text style={styles.title}>
+          <Text style={[styles.title, theme.title]}>
             {I18n.t('points.insertPoint')}
           </Text>
 
-          <View style={styles.box}>
+          <View style={[styles.box, theme.box]}>
             <View style={styles.dataInputFormat}>
-              <Text style={styles.dataInputText}>(</Text>
+              <Text style={[styles.dataInputText, theme.dataInputText]}>(</Text>
 
               <TextInput  
                 placeholder="X"
                 underlineColorAndroid='transparent'  
-                style={styles.dataInput}
+                style={[styles.dataInput, theme.dataInput]}
                 keyboardType={'numeric'}
                 onChangeText={text => setTypedX(text)}
                 ref={inputXRef}
               />
 
-              <Text style={styles.dataInputText}>,</Text>
+              <Text style={[styles.dataInputText, theme.dataInputText]}>,</Text>
 
               <TextInput  
                 placeholder="Y"
                 underlineColorAndroid='transparent'  
-                style={styles.dataInput}  
+                style={[styles.dataInput, theme.dataInput]}  
                 keyboardType={'numeric'}
                 onChangeText={text => setTypedY(text)}
                 ref={inputYRef}
               />
 
-              <Text style={styles.dataInputText}>)</Text>
+              <Text style={[styles.dataInputText, theme.dataInputText]}>)</Text>
             </View>
 
             <View style={styles.savePoint}>
@@ -209,8 +227,8 @@ const Points = () => {
         </View>
 
         <View>
-          <View style={styles.boxClear}>
-            <Text style={styles.title}>
+          <View style={[styles.boxClear]}>
+            <Text style={[styles.title, theme.title]}>
               {I18n.t('points.registeredPoints')}
             </Text>
 
@@ -218,16 +236,16 @@ const Points = () => {
               style={styles.reset}
               onPress={handleClearAllPoints}
             >
-                <Icon name='trash-2' color="#000" size={28} /> 
+              {trashButton}
             </RectButton>
           </View>
 
-          <View style={styles.box}>
+          <View style={[styles.box, theme.box]}>
             <View style={styles.bigBox}>
              <ScrollView style={styles.scroll}>
               {(points.length > 0) ? points.map(point => (
                 <View style={styles.points}>
-                  <Text key={point.index} style={styles.point}>
+                  <Text key={point.index} style={[styles.point, theme.point]}>
                     {point.index+1}. ({point.x}, {point.y})
                   </Text>
                     
@@ -239,7 +257,7 @@ const Points = () => {
                   </RectButton>
                 </View>
               )) : (
-                <Text style={styles.darkMode}>{I18n.t('points.cleanRegistered')}</Text>
+                <Text style={theme.darkMode}>{I18n.t('points.cleanRegistered')}</Text>
               )}
              </ScrollView>
             </View>
@@ -247,17 +265,17 @@ const Points = () => {
         </View>
 
         <View style={styles.footer}>
-          <View style={styles.box}>
-            <Text style={styles.subtitle}>
+          <View style={[styles.box, theme.box]}>
+            <Text style={[styles.subtitle, theme.subtitle]}>
               {I18n.t('points.keepCalm')}
             </Text>
           </View>
 
-          <RectButton style={styles.buttonCalculate} onPress={handleNavigateToGraph}>
+          <RectButton style={[styles.buttonCalculate, theme.buttonCalculate]} onPress={handleNavigateToGraph}>
             <View style={styles.buttonIcon}>
               <IconM name='functions' color="#FFF" size={28} />
             </View>
-            <Text style={styles.buttonText}>
+            <Text style={[styles.buttonText, theme.buttonText]}>
               {I18n.t('points.calculateButton')}
             </Text>
           </RectButton>

@@ -48,13 +48,14 @@
 
     "style": "App Art",
 
-    "lightMode": "Licht modus",
+    "lightMode": "Hell modus",
     "darkMode": "Dunkel modus"
     }, 
 
     "errors": {
     "storeError": "Fehler beim Speichern von Einstellungen!",
-    "readError": "Fehler beim Lesen von Einstellungen!"
+    "readError": "Fehler beim Lesen von Einstellungen!",
+    "nanError": "Fehler bei der Berechnung: ungültiger Datensatz!"
     }
   }
   

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation, useRoute, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { View, ImageBackground, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import Svg, { Line, Circle } from 'react-native-svg';
 
 import I18n from '../../utils/I18n';
+
+import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
@@ -27,8 +29,8 @@ const Graph = () => {
   const isFocused = useIsFocused();
   const route = useRoute();
 
-  const graphWidth = 320
-  const graphHeight = 320
+  const graphWidth = Dimensions.get('window').width * 0.78
+  const graphHeight = Dimensions.get('window').width * 0.78
 
   //-------------------------------------
 
@@ -42,13 +44,12 @@ const Graph = () => {
   //-------------------------------------
 
   const results = LeastSquares.Regression(pointsData);
-
   //y = ax + b
   const yRegression = (results.a * maxX) + results.b
 
   //-------------------------------------
 
-  const styles = (style == 1) ? lightMode : darkMode;
+  const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
     : require('../../assets/background-2.png')
@@ -115,10 +116,10 @@ const Graph = () => {
 
       <View style={styles.main}>
         <View>
-          <Text style={styles.title}>y = ax + b</Text>
+          <Text style={[styles.title, theme.title]}>y = ax + b</Text>
         </View>
 
-        <View style={[styles.box, styles.colorGraph]}>
+        <View style={[styles.box, theme.box, theme.colorGraph]}>
           <Svg height={graphHeight} width={graphWidth}>
             <Line x1="0" y1="100%" x2="100%" y2="100%" stroke={stroke[0]} strokeWidth="5" />
             <Line x1="0" y1="100%" x2="0" y2="0" stroke={stroke[0]} strokeWidth="5" />
@@ -138,18 +139,16 @@ const Graph = () => {
           </Svg>
         </View>
 
-        <View style={styles.footer}>
-          <View style={[styles.resultsBox, styles.colorCoeficient]}>
-            <Text style={styles.subtitleTitle}>{I18n.t('graph.coeficientsTitle')}</Text>
-            <Text style={styles.subtitle}>a = {results.a.toFixed(precision)}</Text>
-            <Text style={styles.subtitle}>b = {results.b.toFixed(precision)}</Text>
-          </View>
+        <View style={[styles.resultsBox, theme.colorCoeficient]}>
+          <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.coeficientsTitle')}</Text>
+          <Text style={[styles.subtitle, theme.subtitle]}>a = {results.a.toFixed(precision)}</Text>
+          <Text style={[styles.subtitle, theme.subtitle]}>b = {results.b.toFixed(precision)}</Text>
+        </View>
 
-          <View style={[styles.resultsBox, styles.colorUncertanty]}>
-            <Text style={styles.subtitleTitle}>{I18n.t('graph.uncertantyTitle')}</Text>
-            <Text style={styles.subtitle}>δa = {results.deltaA.toFixed(precision)}</Text>
-            <Text style={styles.subtitle}>δb = {results.deltaB.toFixed(precision)}</Text>
-          </View>
+        <View style={[styles.resultsBox, theme.colorUncertanty]}>
+          <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.uncertantyTitle')}</Text>
+          <Text style={[styles.subtitle, theme.subtitle]}>δa = {results.deltaA.toFixed(precision)}</Text>
+          <Text style={[styles.subtitle, theme.subtitle]}>δb = {results.deltaB.toFixed(precision)}</Text>
         </View>
       </View>
     </ImageBackground>

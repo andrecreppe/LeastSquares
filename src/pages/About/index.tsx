@@ -7,6 +7,8 @@ import { View, ImageBackground, Text, TouchableOpacity, Linking, Alert } from 'r
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
+
+import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
@@ -16,7 +18,7 @@ const About = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  const styles = (style == 1) ? lightMode : darkMode;
+  const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
     : require('../../assets/background-2.png')
@@ -88,7 +90,7 @@ const About = () => {
       </View>
 
       <View style={styles.main}>
-        <View style={[styles.box, styles.lightBlue]}>
+        <View style={[styles.box, theme.lightBlue]}>
           <Text style={styles.title}>
             {I18n.t('about.leastSquaresTitle')}
           </Text>
@@ -97,7 +99,7 @@ const About = () => {
           </Text>
         </View>
 
-        <View style={[styles.box, styles.blue]}>
+        <View style={[styles.box, theme.blue]}>
           <Text style={styles.title}>
             {I18n.t('about.contactTitle')}
           </Text>
@@ -112,20 +114,20 @@ const About = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.box, styles.darkBlue]}>
+        <View style={[styles.box, theme.darkBlue]}>
           <TouchableOpacity onPress={handlePlayRedirect}>
-            <Text style={styles.title}>
+            <Text style={[styles.title]}>
               {I18n.t('about.storeTitle')}
             </Text>
           </TouchableOpacity>
-          <Text style={styles.subtitle}>
+          <Text style={[styles.subtitle]}>
             {I18n.t('about.storeInfo')}
           </Text>
         </View>
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.version}>{I18n.t('about.version')}</Text>
+        <Text style={[styles.version, theme.version]}>{I18n.t('about.version')}</Text>
       </View>
     </ImageBackground>
   );

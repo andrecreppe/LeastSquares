@@ -53,6 +53,7 @@
 
   "errors": {
     "storeError": "Erro no salvamento das configurações!",
-    "readError": "Erro na leitura das configurações!"
+    "readError": "Erro na leitura das configurações!",
+    "nanError": "Erro no cálculo dos valores: conjunto de pontos inválido!"
   }
 }

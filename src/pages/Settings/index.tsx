@@ -14,6 +14,8 @@ import { Picker } from '@react-native-community/picker';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
+
+import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
@@ -25,7 +27,7 @@ const Settings = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  const styles = (style == 1) ? lightMode : darkMode;
+  const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
     : require('../../assets/background-2.png')
@@ -121,8 +123,8 @@ const Settings = () => {
       </View>
 
       <View style={styles.main}>
-        <View style= {[styles.box, styles.languageColor]}>
-          <Text style={styles.title}>{I18n.t('settings.languageTitle')}</Text>
+        <View style= {[styles.box, theme.languageColor]}>
+          <Text style={[styles.title, theme.title]}>{I18n.t('settings.languageTitle')}</Text>
           
           <View style={styles.miniBox} >
             <Picker
@@ -138,8 +140,8 @@ const Settings = () => {
           </View>
         </View>
 
-        <View style={[styles.box, styles.precisionColor]}>
-          <Text style={styles.title}>{I18n.t('settings.decimalPlaces')}</Text>
+        <View style={[styles.box, theme.precisionColor]}>
+          <Text style={[styles.title, theme.title]}>{I18n.t('settings.decimalPlaces')}</Text>
           
           <NumericInput
             initValue={precision}
@@ -157,8 +159,8 @@ const Settings = () => {
           />
         </View>
 
-        <View style={[styles.box, styles.styleColor]}>
-          <Text style={styles.title}>{I18n.t('settings.style')}</Text>
+        <View style={[styles.box, theme.styleColor]}>
+          <Text style={[styles.title, theme.title]}>{I18n.t('settings.style')}</Text>
           
           <View style={styles.miniBox} >
             <Picker

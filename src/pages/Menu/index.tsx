@@ -7,6 +7,8 @@ import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import I18n from '../../utils/I18n';
+
+import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
@@ -16,7 +18,7 @@ const Menu = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  const styles = (style == 1) ? lightMode : darkMode;
+  const theme = (style == 1) ? lightMode : darkMode;
   const logo = (style == 1) 
     ? <Image style={styles.logo} source={require('../../assets/logo-1.png')} />
     : <Image style={styles.logo} source={require('../../assets/logo-2.png')} />
@@ -93,42 +95,42 @@ const Menu = () => {
       >
         <View style={styles.main}>
           <View>
-            <Text style={styles.title}>{I18n.t('menu.leastSquares')}</Text>
+            <Text style={[styles.title, theme.title]}>{I18n.t('menu.leastSquares')}</Text>
           </View>
 
-          <View>
+          <View style={styles.logo}>
             {logo}
           </View>
 
-          <RectButton style={styles.buttonGo} onPress={handleNavitateToPoints}>
+          <RectButton style={[styles.buttonGo, theme.buttonGo]} onPress={handleNavitateToPoints}>
             <View style={styles.buttonIcon}>
               <Text>
                 <Icon name='chevrons-right' color="#FFF" size={24} />
               </Text>
             </View>
-            <Text style={styles.buttonText}>
+            <Text style={[styles.buttonText, theme.buttonText]}>
               {I18n.t('menu.start')}
             </Text>
           </RectButton>
         </View>
 
         <View style={styles.footer}>
-          <RectButton style={[styles.buttonAbout, styles.buttomBottom]} onPress={handleNavitateToAbout}>
+          <RectButton style={[theme.buttonAbout, styles.buttomBottom]} onPress={handleNavitateToAbout}>
             <View style={styles.buttonIcon}>
               <Icon name='info' color="#FFF" size={22} />
             </View>
-            <Text style={styles.buttonText}>
+            <Text style={[styles.buttonText, theme.buttonText]}>
               {I18n.t('menu.about')}
             </Text>
           </RectButton>
 
-          <RectButton style={[styles.buttonConfigs, styles.buttomBottom]} onPress={handleNavitateToSettings}>
+          <RectButton style={[theme.buttonConfigs, styles.buttomBottom]} onPress={handleNavitateToSettings}>
             <View style={styles.buttonIcon}>
               <Text>
                 <Icon name='settings' color="#FFF" size={22} />
               </Text>
             </View>
-            <Text style={styles.buttonText}>
+            <Text style={[styles.buttonText, theme.buttonText]}>
               {I18n.t('menu.settings')}
             </Text>
           </RectButton>
