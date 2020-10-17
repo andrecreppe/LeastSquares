@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation, useRoute, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { View, ImageBackground, Text, TouchableOpacity, Alert, Dimensions, ScrollView } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
-
 import Svg, { Line, Circle } from 'react-native-svg';
-
 import I18n from '../../utils/I18n';
+import { DataPoints } from '../../interfaces/data-points.interface';
 
 import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
 import LeastSquares from '../../math/LeastSquares';
-
-interface DataPoints {
-  index: number,
-  x: number,
-  y: number
-}
 
 const Graph = () => {
   const [precision, setPrecision] = useState<number>(0);
@@ -29,8 +21,8 @@ const Graph = () => {
   const isFocused = useIsFocused();
   const route = useRoute();
 
-  const graphWidth = Dimensions.get('window').width * 0.78
-  const graphHeight = Dimensions.get('window').height * 0.39
+  const graphWidth = Dimensions.get('window').width * 0.78;
+  const graphHeight = Dimensions.get('window').height * 0.39;
 
   //-------------------------------------
 
@@ -44,21 +36,21 @@ const Graph = () => {
   //-------------------------------------
 
   const results = LeastSquares.Regression(pointsData);
-  //y = ax + b
-  const yRegression = (results.a * maxX) + results.b
+  // y = ax + b
+  const yRegression = (results.a * maxX) + results.b;
 
   //-------------------------------------
 
   const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
-    : require('../../assets/background-2.png')
+    : require('../../assets/background-2.png');
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
   const stroke = (style == 1)
     ? ['black', 'red', 'blue']
-    : ['white', 'red', '#00FFFF']
+    : ['white', 'red', '#00FFFF'];
   //-------------------------------------
 
   useEffect(() => {
@@ -78,13 +70,13 @@ const Graph = () => {
 
   const getData = async (key: string) => {
     try {
-      const value = await AsyncStorage.getItem(key)
+      const value = await AsyncStorage.getItem(key);
 
       if(value !== null) {
         return value
       }
     } catch(e) {
-      TriggerAlert(I18n.t('error.readError') + e)
+      TriggerAlert(I18n.t('error.readError') + e);
     }
   }
 

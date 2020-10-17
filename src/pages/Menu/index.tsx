@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { View, ImageBackground, Image, Text, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
-
 import I18n from '../../utils/I18n';
 
 import styles from './style';
@@ -24,7 +22,7 @@ const Menu = () => {
     : <Image style={styles.logo} source={require('../../assets/logo-2.png')} />
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
-    : require('../../assets/background-2.png')
+    : require('../../assets/background-2.png');
 
   function TriggerAlert(message: string) {
     Alert.alert(

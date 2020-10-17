@@ -1,22 +1,15 @@
 import React, { useState, createRef, useEffect } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { RectButton } from 'react-native-gesture-handler';
 import { View, ImageBackground, Text, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { Feather as Icon, MaterialIcons as IconM } from '@expo/vector-icons';
-
 import I18n from '../../utils/I18n';
+import { Point } from '../../interfaces/point.interface';
 
 import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
-
-interface Point {
-  index: number,
-  x: number,
-  y: number
-}
 
 const Points = () => {
   const [style, setStyle] = useState<number>(0);
@@ -33,7 +26,7 @@ const Points = () => {
   const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
-    : require('../../assets/background-2.png')
+    : require('../../assets/background-2.png');
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
@@ -60,14 +53,14 @@ const Points = () => {
 
   const getData = async (key: string) => {
     try {
-      const value = await AsyncStorage.getItem(key)
+      const value = await AsyncStorage.getItem(key);
 
       if(value !== null) {
-        return value
+        return value;
       }
     } catch(e) {
-      TriggerAlert(I18n.t('error.readError') + e)
-      }
+      TriggerAlert(I18n.t('error.readError') + e);
+    }
   }
   
   async function loadConfiguredData() {
@@ -168,10 +161,10 @@ const Points = () => {
   function handleDeletePoint(position: number) {    
     const newPoints = points.filter((point) => {
       if(point.index > position) {
-        point.index--
-        return point
+        point.index--;
+        return point;
       } else if(point.index < position) {
-        return point
+        return point;
       }
     });
 

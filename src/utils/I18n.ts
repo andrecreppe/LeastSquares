@@ -1,6 +1,5 @@
 import I18n from 'i18n-js';
-import { Platform, NativeModules } from 'react-native'
-//import * as RNLocalize from 'react-native-localize';
+import { Platform, NativeModules } from 'react-native';
 
 import en from './locales/en.json';
 import pt from './locales/pt.json';
