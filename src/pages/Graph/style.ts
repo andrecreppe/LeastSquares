@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     padding: 32,
   },
 
+  contentContainer: {
+    paddingVertical: 25
+  },
+
   main: {
     flex: 1,
   },
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
 
     flexDirection: 'row',
 
-    height: '47.5%'
+    height: '44.5%'
   },
 
   resultsBox: {

@@ -23,9 +23,11 @@
     },
 
     "graph": {
-    "coeficientsTitle": "Zeilenkoefizienten:",
+      "dispertionTitle": "Durchschnittliche Anpassungsstreuung:",
 
-    "uncertantyTitle": "Ungewissheiten:"
+      "coeficientsTitle": "Zeilenkoefizienten:",
+
+      "uncertantyTitle": "Ungewissheiten:"
     },
 
     "about": {

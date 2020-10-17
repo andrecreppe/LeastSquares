@@ -137,10 +137,11 @@ const Points = () => {
   function formatInput(coordinate: string) {
     //Removes -
     let cleanCoordinate = coordinate.replace('-', '');
+    cleanCoordinate = cleanCoordinate.replace(',', '.');
     
     //Remover double point
     while(cleanCoordinate.split('.').length > 2) {
-      cleanCoordinate = cleanCoordinate.replace(/.([^.]*)$/, '$1')
+      cleanCoordinate = cleanCoordinate.replace(/.([^.]*)$/, '$1');
     }
 
     return cleanCoordinate;

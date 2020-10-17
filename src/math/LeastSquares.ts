@@ -104,7 +104,8 @@ class LeastSquares extends Component {
       a,
       b,
       deltaA,
-      deltaB
+      deltaB,
+      deltaY
     }
   }
 }

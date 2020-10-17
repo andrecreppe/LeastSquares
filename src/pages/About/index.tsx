@@ -108,8 +108,7 @@ const About = () => {
           </Text>
           <TouchableOpacity onPress={handleComposeMail}>
             <Text style={[styles.subtitle, theme.contactText]}>
-              andrecrepper@gmail.com{"\n"}
-              @andrecreppe
+              andrecrepper@gmail.com
             </Text>
           </TouchableOpacity>
         </View>

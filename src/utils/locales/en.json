@@ -23,6 +23,8 @@
   },
 
   "graph": {
+    "dispertionTitle": "Average adjust dispersion:",
+
     "coeficientsTitle": "Line coeficients:",
 
     "uncertantyTitle": "Uncertainties:"

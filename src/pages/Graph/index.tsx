@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation, useRoute, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { View, ImageBackground, Text, TouchableOpacity, Alert, Dimensions } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, Alert, Dimensions, ScrollView } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import Svg, { Line, Circle } from 'react-native-svg';
@@ -114,43 +114,50 @@ const Graph = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.main}>
-        <View>
-          <Text style={[styles.title, theme.title]}>y = ax + b</Text>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.main}>
+          <View>
+            <Text style={[styles.title, theme.title]}>y = ax + b</Text>
+          </View>
+
+          <View style={[styles.box, theme.box, theme.colorGraph]}>
+            <Svg height={graphHeight} width={graphWidth}>
+              <Line x1="0" y1="100%" x2="100%" y2="100%" stroke={stroke[0]} strokeWidth="5" />
+              <Line x1="0" y1="100%" x2="0" y2="0" stroke={stroke[0]} strokeWidth="5" />
+
+              {pointsData.map((point) => {
+                const x = (point.x / maxX) - 0.1;
+                const y = 1 - (point.y / maxY) + 0.1;
+
+                return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill={stroke[1]} />
+              })}
+
+              <Line 
+                stroke={stroke[2]} strokeWidth="3"
+                x1="0" y1={(1-results.b/maxY)*graphHeight} //y = b
+                x2={graphWidth} y2={(1-yRegression/maxY)*graphHeight} //y = ax(max) + b
+              />
+            </Svg>
+          </View>
+
+          <View style={[styles.resultsBox, theme.colorLineDispersion]}>
+            <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.dispertionTitle')}</Text>
+            <Text style={[styles.subtitle, theme.subtitle]}>δy = {results.deltaY.toFixed(precision)}</Text>
+          </View>
+
+          <View style={[styles.resultsBox, theme.colorCoeficient]}>
+            <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.coeficientsTitle')}</Text>
+            <Text style={[styles.subtitle, theme.subtitle]}>a = {results.a.toFixed(precision)}</Text>
+            <Text style={[styles.subtitle, theme.subtitle]}>b = {results.b.toFixed(precision)}</Text>
+          </View>
+
+          <View style={[styles.resultsBox, theme.colorUncertanty]}>
+            <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.uncertantyTitle')}</Text>
+            <Text style={[styles.subtitle, theme.subtitle]}>δa = {results.deltaA.toFixed(precision)}</Text>
+            <Text style={[styles.subtitle, theme.subtitle]}>δb = {results.deltaB.toFixed(precision)}</Text>
+          </View>
         </View>
-
-        <View style={[styles.box, theme.box, theme.colorGraph]}>
-          <Svg height={graphHeight} width={graphWidth}>
-            <Line x1="0" y1="100%" x2="100%" y2="100%" stroke={stroke[0]} strokeWidth="5" />
-            <Line x1="0" y1="100%" x2="0" y2="0" stroke={stroke[0]} strokeWidth="5" />
-
-            {pointsData.map((point) => {
-              const x = (point.x / maxX) - 0.1;
-              const y = 1 - (point.y / maxY) + 0.1;
-
-              return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill={stroke[1]} />
-            })}
-
-            <Line 
-              stroke={stroke[2]} strokeWidth="3"
-              x1="0" y1={(1-results.b/maxY)*graphHeight} //y = b
-              x2={graphWidth} y2={(1-yRegression/maxY)*graphHeight} //y = ax(max) + b
-            />
-          </Svg>
-        </View>
-
-        <View style={[styles.resultsBox, theme.colorCoeficient]}>
-          <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.coeficientsTitle')}</Text>
-          <Text style={[styles.subtitle, theme.subtitle]}>a = {results.a.toFixed(precision)}</Text>
-          <Text style={[styles.subtitle, theme.subtitle]}>b = {results.b.toFixed(precision)}</Text>
-        </View>
-
-        <View style={[styles.resultsBox, theme.colorUncertanty]}>
-          <Text style={[styles.subtitleTitle, theme.subtitleTitle]}>{I18n.t('graph.uncertantyTitle')}</Text>
-          <Text style={[styles.subtitle, theme.subtitle]}>δa = {results.deltaA.toFixed(precision)}</Text>
-          <Text style={[styles.subtitle, theme.subtitle]}>δb = {results.deltaB.toFixed(precision)}</Text>
-        </View>
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 }

@@ -22,6 +22,8 @@
   },
 
   "graph": {
+    "dispertionTitle": "Dispersão média do ajuste:",
+
     "coeficientsTitle": "Coeficientes da reta:",
 
     "uncertantyTitle": "Incertezas:"
