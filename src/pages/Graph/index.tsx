@@ -39,6 +39,10 @@ const Graph = () => {
   // y = ax + b
   const yRegression = (results.a * maxX) + results.b;
 
+  // const xAxis = ['0', '100%', '100%', '100%', '5'];
+  const xAxis = ['0', '50%', '100%', '50%', '3'];
+  const yAxis = ['0', '100%', '0', '0', '5'];
+
   //-------------------------------------
 
   const theme = (style == 1) ? lightMode : darkMode;
@@ -51,6 +55,7 @@ const Graph = () => {
   const stroke = (style == 1)
     ? ['black', 'red', 'blue']
     : ['white', 'red', '#00FFFF'];
+
   //-------------------------------------
 
   useEffect(() => {
@@ -114,8 +119,10 @@ const Graph = () => {
 
           <View style={[styles.box, theme.box, theme.colorGraph]}>
             <Svg height={graphHeight} width={graphWidth}>
-              <Line x1="0" y1="100%" x2="100%" y2="100%" stroke={stroke[0]} strokeWidth="5" />
-              <Line x1="0" y1="100%" x2="0" y2="0" stroke={stroke[0]} strokeWidth="5" />
+              {/* <Line x1={xAxis[0]} y1={xAxis[1]} x2={xAxis[2]} y2={xAxis[3]} stroke={stroke[0]} strokeWidth={xAxis[4]} />
+              <Line x1={yAxis[0]} y1={yAxis[1]} x2={yAxis[2]} y2={yAxis[3]} stroke={stroke[0]} strokeWidth={yAxis[4]} /> */}
+
+              {/* scatter chart from react-native-charts-wrapper */}
 
               {pointsData.map((point) => {
                 const x = (point.x / maxX) - 0.1;
