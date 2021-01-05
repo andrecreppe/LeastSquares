@@ -6,14 +6,15 @@ import { Feather as Icon } from '@expo/vector-icons';
 import Svg, { Line, Circle } from 'react-native-svg';
 import I18n from '../../utils/I18n';
 import { DataPoints } from '../../interfaces/data-points.interface';
+import LeastSquares from '../../math/LeastSquares';
 
 import styles from './style';
 import lightMode from './styleLight';
 import darkMode from './styleDark';
 
-import LeastSquares from '../../math/LeastSquares';
-
 const Graph = () => {
+  console.log('New run');
+
   const [precision, setPrecision] = useState<number>(0);
   const [style, setStyle] = useState<number>(0);
 
@@ -27,11 +28,20 @@ const Graph = () => {
   //-------------------------------------
 
   const pointsData = route.params as DataPoints[];
-  
-  const maxX = pointsData.sort((a, b) => b.x - a.x)[0].x;
-  const maxY = pointsData.sort((a, b) => b.y - a.y)[0].y;
-
   pointsData.sort((a, b) => a.index - b.index);
+
+  const ascX = pointsData.sort((a, b) => a.x - b.x);
+  const maxX = ascX[ascX.length - 1].x;
+  const minX = ascX[0].x;
+
+  const ascY = pointsData.sort((a, b) => a.y - b.y);
+  const maxY = ascY[ascY.length - 1].y;
+  const minY = ascY[0].y;
+
+  const xAxis = ['0', `${100 - xPosition(0)*100}%`, '100%', `${100 - xPosition(0)*100}%`, '3'];
+  const yAxis = [`${100 - yPosition(0)*100}%`, '0', `${100 - yPosition(0)*100}%`, '100%', '3'];
+
+  const marginStep = 0.02;
 
   //-------------------------------------
 
@@ -39,9 +49,33 @@ const Graph = () => {
   // y = ax + b
   const yRegression = (results.a * maxX) + results.b;
 
-  // const xAxis = ['0', '100%', '100%', '100%', '5'];
-  const xAxis = ['0', '50%', '100%', '50%', '3'];
-  const yAxis = ['0', '100%', '0', '0', '5'];
+  function xPosition(x: number) {
+    const calcMax = maxX + Math.abs(minX);
+    const calcX = x + Math.abs(minX)
+    let newX = (calcX / calcMax);
+
+    if(newX === 0) {
+      newX += marginStep;
+    } else if(newX === 1) {
+      newX -= marginStep;
+    }
+
+    return newX;
+  }
+
+  function yPosition(y: number) {
+    const calcMax = maxY + Math.abs(minY);
+    const calcX = y + Math.abs(minY)
+    let newY = 1 - (calcX / calcMax);
+
+    if(newY === 0) {
+      newY += marginStep;
+    } else if(newY === 1) {
+      newY -= marginStep;
+    }
+
+    return newY;
+  }
 
   //-------------------------------------
 
@@ -119,14 +153,12 @@ const Graph = () => {
 
           <View style={[styles.box, theme.box, theme.colorGraph]}>
             <Svg height={graphHeight} width={graphWidth}>
-              {/* <Line x1={xAxis[0]} y1={xAxis[1]} x2={xAxis[2]} y2={xAxis[3]} stroke={stroke[0]} strokeWidth={xAxis[4]} />
-              <Line x1={yAxis[0]} y1={yAxis[1]} x2={yAxis[2]} y2={yAxis[3]} stroke={stroke[0]} strokeWidth={yAxis[4]} /> */}
-
-              {/* scatter chart from react-native-charts-wrapper */}
+              <Line x1={xAxis[0]} y1={xAxis[1]} x2={xAxis[2]} y2={xAxis[3]} stroke={stroke[0]} strokeWidth={xAxis[4]} />
+              <Line x1={yAxis[0]} y1={yAxis[1]} x2={yAxis[2]} y2={yAxis[3]} stroke={stroke[0]} strokeWidth={yAxis[4]} />
 
               {pointsData.map((point) => {
-                const x = (point.x / maxX) - 0.1;
-                const y = 1 - (point.y / maxY) + 0.1;
+                const x = xPosition(point.x);
+                const y = yPosition(point.y);
 
                 return <Circle cx={x*graphWidth} cy={y*graphHeight} r="5" fill={stroke[1]} />
               })}
