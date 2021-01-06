@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import * as MailComposer from 'expo-mail-composer';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { View, ImageBackground, Text, TouchableOpacity, Linking, Alert } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
-
 import I18n from '../../utils/I18n';
 
 import styles from './style';
@@ -21,7 +19,7 @@ const About = () => {
   const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
-    : require('../../assets/background-2.png')
+    : require('../../assets/background-2.png');
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
@@ -45,14 +43,14 @@ const About = () => {
 
   const getData = async (key: string) => {
     try {
-      const value = await AsyncStorage.getItem(key)
+      const value = await AsyncStorage.getItem(key);
 
       if(value !== null) {
         return value
       }
     } catch(e) {
-      TriggerAlert(I18n.t('error.readError') + e)
-      }
+      TriggerAlert(I18n.t('error.readError') + e);
+    }
   }
   
   async function loadConfiguredData() {
@@ -108,8 +106,7 @@ const About = () => {
           </Text>
           <TouchableOpacity onPress={handleComposeMail}>
             <Text style={[styles.subtitle, theme.contactText]}>
-              andrecrepper@gmail.com{"\n"}
-              @andrecreppe
+              andrecrepper@gmail.com
             </Text>
           </TouchableOpacity>
         </View>

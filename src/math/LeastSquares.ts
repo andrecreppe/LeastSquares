@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { LeastSquaresResult } from '../interfaces/ls-result.interface';
 
 interface Point {
   index: number,
@@ -7,7 +8,7 @@ interface Point {
 }
 
 class LeastSquares extends Component {
-  static Average(arr: number[]) {
+  static Average(arr: number[]): number {
     let sum = 0;
     const size = arr.length;
 
@@ -18,7 +19,7 @@ class LeastSquares extends Component {
     return (sum / size);
   }
 
-  static SumArrayMultArray(arr1: number[], arr2: number[]) {
+  static SumArrayMultArray(arr1: number[], arr2: number[]): number {
     let sum = 0;
     const size = arr1.length;
 
@@ -29,7 +30,7 @@ class LeastSquares extends Component {
     return sum;
   }
 
-  static SumMinusSquare(arr: number[], val: number) {
+  static SumMinusSquare(arr: number[], val: number): number {
     let sum = 0;
     const size = arr.length;
 
@@ -40,7 +41,7 @@ class LeastSquares extends Component {
     return sum;
   }
 
-  static SumSquare(arr: number[]) {
+  static SumSquare(arr: number[]): number {
     let sum = 0;
     const size = arr.length;
 
@@ -51,7 +52,7 @@ class LeastSquares extends Component {
     return sum;
   }
   
-  static FindA(xVals: number[], yVals: number[], xAvg: number) {
+  static FindA(xVals: number[], yVals: number[], xAvg: number): number {
     const xMinusAvg = xVals.map(x => { return (x - xAvg) });
 
     const xMinusAvgY = this.SumArrayMultArray(xMinusAvg, yVals);
@@ -60,7 +61,7 @@ class LeastSquares extends Component {
     return (xMinusAvgY / xMinusAvg2)
   }
 
-  static FindDeltaY(xVals: number[], yVals: number[], a: number, b: number) {
+  static FindDeltaY(xVals: number[], yVals: number[], a: number, b: number): number {
     const size = xVals.length;
     let sum = 0;
 
@@ -73,20 +74,20 @@ class LeastSquares extends Component {
     return Math.sqrt(sum)
   }
 
-  static FindDeltaA(xVals: number[], xAvg: number, deltaY: number) {
+  static FindDeltaA(xVals: number[], xAvg: number, deltaY: number): number {
     const den = Math.sqrt(this.SumMinusSquare(xVals, xAvg));
 
     return (deltaY / den);
   }
 
-  static FindDeltaB(xVals: number[], xAvg: number, deltaY: number) {
+  static FindDeltaB(xVals: number[], xAvg: number, deltaY: number): number {
     const num = this.SumSquare(xVals);
     const den = xVals.length * this.SumMinusSquare(xVals, xAvg);
 
     return (Math.sqrt(num/den) * deltaY);
   }
 
-  static Regression(data: Point[]) {
+  static Regression(data: Point[]): LeastSquaresResult {
     const xVals = data.map(point => { return point.x })
     const yVals = data.map(point => { return point.y })
 
@@ -104,7 +105,8 @@ class LeastSquares extends Component {
       a,
       b,
       deltaA,
-      deltaB
+      deltaB,
+      deltaY
     }
   }
 }

@@ -10,16 +10,31 @@ import Settings from './pages/Settings';
 
 const AppStack = createStackNavigator();
 
+const navigatorOptions = {
+  headerShown: false,
+  cardStyle: { backgroundColor: 'transparent' },
+  cardStyleInterpolator: ({ current: { progress } }) => ({
+    cardStyle: {
+      opacity: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+      }),
+    },
+    overlayStyle: {
+      opacity: progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 0.5],
+        extrapolate: 'clamp',
+      }),
+    },
+  }),
+}
+
 const Routes = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator 
-        headerMode="none" 
-        screenOptions={{
-          cardStyle: {
-            backgroundColor: '#f0f0f5'
-          }
-        }}
+        screenOptions={navigatorOptions}
       >
         <AppStack.Screen name="Home" component={Menu}/>
         <AppStack.Screen name="About" component={About}/>

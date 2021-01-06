@@ -7,12 +7,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import I18nDefault from 'i18n-js';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import { View, ImageBackground, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import { Picker } from '@react-native-community/picker';
 import { Feather as Icon } from '@expo/vector-icons';
-
 import I18n from '../../utils/I18n';
 
 import styles from './style';
@@ -30,7 +28,7 @@ const Settings = () => {
   const theme = (style == 1) ? lightMode : darkMode;
   const background = (style == 1) 
     ? require('../../assets/background-1.png')
-    : require('../../assets/background-2.png')
+    : require('../../assets/background-2.png');
   const returnButton = (style == 1)
     ? <Icon name='arrow-left' size={28} color='#000' />
     : <Icon name='arrow-left' size={28} color='#FFF' />
@@ -58,7 +56,7 @@ const Settings = () => {
 
   const storeData = async (key: string, value: string) => {
     try {
-      await AsyncStorage.setItem(key, value)
+      await AsyncStorage.setItem(key, value);
     } catch (e) {
       TriggerAlert(I18n.t('error.storeError') + e);
     }
@@ -66,13 +64,13 @@ const Settings = () => {
 
   const getData = async (key: string) => {
     try {
-      const value = await AsyncStorage.getItem(key)
+      const value = await AsyncStorage.getItem(key);
 
       if(value !== null) {
-        return value
+        return value;
       }
     } catch(e) {
-      TriggerAlert(I18n.t('error.readError') + e)
+      TriggerAlert(I18n.t('error.readError') + e);
     }
   }
 
@@ -102,11 +100,11 @@ const Settings = () => {
   }
 
   function handleUpdateDecimalSettings(roundPlaces: string) {
-    storeData('@precision', roundPlaces)
+    storeData('@precision', roundPlaces);
   }
 
   function handleChangeStyle(styleNumber: string) {
-    storeData('@style', styleNumber)
+    storeData('@style', styleNumber);
     navigation.goBack();
   }
 

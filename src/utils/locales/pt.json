@@ -22,6 +22,8 @@
   },
 
   "graph": {
+    "dispertionTitle": "Dispersão média do ajuste:",
+
     "coeficientsTitle": "Coeficientes da reta:",
 
     "uncertantyTitle": "Incertezas:"
@@ -37,7 +39,7 @@
     "storeTitle": "Avalie o app na PlayStore",
     "storeInfo": "Sua opinião é importante para o aplicativo ser o mais sensacional possível.",
 
-    "version": "v1.0 - Junho/2020"
+    "version": "v1.1 - Janeiro/2021"
   },
 
   "settings": {

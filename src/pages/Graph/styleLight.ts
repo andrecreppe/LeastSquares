@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F3F3'
   },
 
+  colorLineDispersion: {
+    backgroundColor: '#5DDB4D'
+  },
+
   colorCoeficient: {
     backgroundColor: '#3494CB'
   },
