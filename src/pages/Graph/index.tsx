@@ -13,8 +13,6 @@ import lightMode from './styleLight';
 import darkMode from './styleDark';
 
 const Graph = () => {
-  console.log('New run');
-
   const [precision, setPrecision] = useState<number>(0);
   const [style, setStyle] = useState<number>(0);
 
